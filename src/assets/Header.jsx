@@ -77,7 +77,7 @@ function Header() {
         >
           <img
             loading="lazy"
-            src="/profil.JPG"
+            src="https://i.ibb.co/6m69z7v/profile2.jpg"
             alt="Mohammed Ez Zouak"
             className="w-48 h-48 rounded-full mx-auto border-4 border-blue-400 shadow-lg hover:border-blue-300 transition-all duration-300 transform hover:scale-105"
           />
@@ -120,7 +120,7 @@ function Header() {
         >
           <CTAButton href="#projects">View Projects</CTAButton>
           <CTAButton href="#contact" secondary>Get in Touch</CTAButton>
-          <CTAButton href="/resume.pdf" secondary>Download CV</CTAButton>
+          <CTAButton href={import.meta.env.BASE_URL + '/resume.pdf'} secondary>Download CV</CTAButton>
         </motion.div>
       </div>
     </header>
