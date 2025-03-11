@@ -77,7 +77,7 @@ function Header() {
         >
           <img
             loading="lazy"
-            src="https://i.ibb.co/6m69z7v/profile2.jpg"
+            src={ import.meta.env.BASE_URL + '/profil.jpg'}
             alt="Mohammed Ez Zouak"
             className="w-48 h-48 rounded-full mx-auto border-4 border-blue-400 shadow-lg hover:border-blue-300 transition-all duration-300 transform hover:scale-105"
           />
