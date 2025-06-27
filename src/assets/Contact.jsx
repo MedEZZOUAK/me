@@ -16,7 +16,7 @@ function Contact() {
 
   return (
     <section id="contact" className="relative min-h-screen bg-gradient-to-br from-[#f8fafc] via-[#e2e8f0] to-[#cbd5e1]">
-      <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
+      <div className="absolute inset-0 bg-[url('grid.svg')] opacity-10" />
       <div className="relative z-10 container mx-auto px-6 py-20">
         <motion.h2
           initial={{ opacity: 0, y: -20 }}

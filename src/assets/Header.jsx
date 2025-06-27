@@ -8,7 +8,7 @@ function Header() {
 
   return (
     <header className="relative min-h-screen bg-gradient-to-br from-[#f8fafc] via-[#e2e8f0] to-[#cbd5e1]">
-      <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10"></div>
+      <div className="absolute inset-0 bg-[url('grid.svg')] opacity-10"></div>
       
       {/* Navigation Bar */}
       <nav className="relative z-10 container mx-auto px-6 py-6">
@@ -81,7 +81,7 @@ function Header() {
         >
           <img
             loading="lazy"
-            src={ import.meta.env.BASE_URL + '/profil.JPG'}
+            src={ import.meta.env.BASE_URL + 'profil.JPG'}
             alt="Mohammed Ez-Zouak"
             className="w-64 h-64 rounded-full mx-auto border-4 border-blue-500 shadow-2xl hover:border-blue-600 transition-all duration-300 transform hover:scale-105"
           />
