@@ -3,6 +3,8 @@ import Contact from './assets/Contact'
 import Header from './assets/Header'
 import Projects from './assets/Projects'
 import Skills from './assets/Skills'
+import Experience from './assets/Experience'
+import Education from './assets/Education'
 
 function App() {
 
@@ -11,8 +13,10 @@ function App() {
     <Header></Header>
     <About></About>
     <Skills></Skills>
-      <Projects></Projects>
-      <Contact></Contact>
+    <Experience></Experience>
+    <Projects></Projects>
+    <Education></Education>
+    <Contact></Contact>
     </>
   )
 }
