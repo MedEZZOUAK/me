@@ -1,17 +1,17 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useForm, ValidationError } from '@formspree/react';
-import { FaGithub, FaLinkedin, FaEnvelope, FaPaperPlane, FaMapMarkerAlt, FaPhone } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaEnvelope, FaPaperPlane, FaMapMarkerAlt, FaPhone, FaGlobe } from "react-icons/fa";
 
 function Contact() {
   const [state, handleSubmit] = useForm("movvbnwn");
 
   const contactInfo = {
     email: "m.ezzouak@outlook.com",
-    phone: "+212 6 XX XX XX XX",
-    location: "Tétouan, Morocco",
+    phone: "+2126-0203-7451",
     linkedin: "linkedin.com/in/mohammed-ez-zouak",
-    github: "github.com/MedEZZOUAK"
+    github: "github.com/MedEZZOUAK",
+    portfolio: "mezzouak.tech"
   };
 
   return (
@@ -158,16 +158,6 @@ function Contact() {
                     <p className="text-gray-600">{contactInfo.phone}</p>
                   </div>
                 </a>
-                
-                <div className="flex items-center space-x-4 text-gray-700">
-                  <div className="bg-purple-100 p-3 rounded-lg">
-                    <FaMapMarkerAlt className="h-6 w-6 text-purple-600" />
-                  </div>
-                  <div>
-                    <p className="font-medium">Location</p>
-                    <p className="text-gray-600">{contactInfo.location}</p>
-                  </div>
-                </div>
               </div>
             </div>
 
@@ -195,6 +185,17 @@ function Contact() {
                     <FaLinkedin className="h-6 w-6 text-blue-600" />
                   </div>
                   <span>{contactInfo.linkedin}</span>
+                </a>
+                <a
+                  href={`https://${contactInfo.portfolio}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center space-x-4 text-gray-700 hover:text-purple-600 transition duration-300 group"
+                >
+                  <div className="bg-purple-100 p-3 rounded-lg group-hover:bg-purple-200">
+                    <FaGlobe className="h-6 w-6 text-purple-600" />
+                  </div>
+                  <span>{contactInfo.portfolio}</span>
                 </a>
               </div>
             </div>

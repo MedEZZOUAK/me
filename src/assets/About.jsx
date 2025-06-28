@@ -24,20 +24,18 @@ function About() {
             className="text-lg text-gray-700 space-y-6"
           >
             <p>
-              Recently graduated from <span className="text-blue-600 font-semibold">ENSA Tétouan</span> in 
-              <span className="text-purple-600 font-semibold"> Computer Engineering</span>, specialized in 
-              <span className="text-orange-500 font-semibold"> Information Systems and Decision Support</span>.
+              Computer Engineering graduate from <span className="text-blue-600 font-semibold">ENSA Tétouan</span>, 
+              focused on <span className="text-purple-600 font-semibold">Information Systems and Decision Support</span>.
+              Currently working on computer vision applications for manufacturing quality control.
             </p>
             <p>
-              Hands-on experience in the <span className="text-blue-600 font-semibold">automotive industry</span> with the implementation 
-              of <span className="text-purple-600 font-semibold">AI-based visual defect detection systems</span>. Open to opportunities combining 
-              data science, software development, and real-world industrial applications.
+              Built a real-time defect detection system using YOLOv8 and OpenCV that processes live video streams 
+              from production lines. The system detects manufacturing defects with high accuracy and integrates 
+              directly with existing factory workflows.
             </p>
             <p>
-              Passionate about <span className="text-orange-500 font-semibold">computer vision</span>, 
-              <span className="text-blue-600 font-semibold"> machine learning</span>, and 
-              <span className="text-purple-600 font-semibold"> industrial automation</span>. 
-              Committed to delivering innovative solutions that drive business value.
+              Interested in the intersection of AI, data engineering, and industrial automation. 
+              I enjoy solving practical problems where software can make a real difference in efficiency and quality.
             </p>
           </motion.div>
 
@@ -50,26 +48,31 @@ function About() {
             <QuickFactCard 
               icon={<FaGraduationCap />}
               title="Computer Engineering Graduate"
+              subtitle="ENSA Tétouan, 2025"
               color="blue"
             />
             <QuickFactCard 
               icon={<FaIndustry />}
-              title="Automotive Industry Experience"
+              title="Manufacturing Experience"
+              subtitle="PFE at Lear Corporation"
               color="purple"
             />
             <QuickFactCard 
               icon={<FaBrain />}
-              title="AI & Computer Vision Expert"
+              title="YOLOv8 & OpenCV"
+              subtitle="Real-time defect detection"
               color="orange"
             />
             <QuickFactCard 
               icon={<FaDatabase />}
-              title="Data Engineering Certified"
+              title="ETL & Data Pipelines"
+              subtitle="BigQuery, Airflow, PowerBI"
               color="green"
             />
             <QuickFactCard 
               icon={<FaGlobe />}
-              title="Trilingual (AR, FR, EN)"
+              title="Trilingual"
+              subtitle="Arabic, French, English"
               color="pink"
             />
           </motion.div>
@@ -108,16 +111,16 @@ function About() {
               color="green"
             />
             <ExpertiseCard 
-              icon={<FaCogs />}
-              title="Automation & Optimization"
-              description="Workflow automation, performance optimization, and scheduled task management with cron jobs."
-              color="pink"
-            />
-            <ExpertiseCard 
               icon={<FaBrain />}
               title="AI & Computer Vision"
               description="YOLOv8, OpenCV, PyTorch implementation for industrial defect detection and quality control systems."
               color="indigo"
+            />
+            <ExpertiseCard 
+              icon={<FaCogs />}
+              title="Business Process Automation"
+              description="Automated data workflows, scheduled task management, and system integration for manufacturing and business operations."
+              color="pink"
             />
           </div>
         </motion.div>
@@ -126,13 +129,26 @@ function About() {
   );
 }
 
-const QuickFactCard = ({ icon, title, color }) => (
-  <div className={`flex items-center space-x-4 p-4 rounded-lg bg-gradient-to-r from-${color}-50 to-${color}-100 border border-${color}-200 hover:shadow-lg transition-all duration-300`}>
-    <div className={`text-3xl text-${color}-600`}>
+const QuickFactCard = ({ icon, title, subtitle, color }) => (
+  <div className={`flex items-center space-x-4 p-4 rounded-lg border hover:shadow-lg transition-all duration-300 ${
+    color === 'blue' ? 'bg-gradient-to-r from-blue-50 to-blue-100 border-blue-200' :
+    color === 'purple' ? 'bg-gradient-to-r from-purple-50 to-purple-100 border-purple-200' :
+    color === 'orange' ? 'bg-gradient-to-r from-orange-50 to-orange-100 border-orange-200' :
+    color === 'green' ? 'bg-gradient-to-r from-green-50 to-green-100 border-green-200' :
+    'bg-gradient-to-r from-pink-50 to-pink-100 border-pink-200'
+  }`}>
+    <div className={`text-3xl ${
+      color === 'blue' ? 'text-blue-600' :
+      color === 'purple' ? 'text-purple-600' :
+      color === 'orange' ? 'text-orange-600' :
+      color === 'green' ? 'text-green-600' :
+      'text-pink-600'
+    }`}>
       {icon}
     </div>
     <div>
       <h3 className="text-lg font-bold text-gray-800">{title}</h3>
+      {subtitle && <p className="text-gray-600">{subtitle}</p>}
     </div>
   </div>
 );

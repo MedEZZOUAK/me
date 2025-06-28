@@ -5,19 +5,18 @@ import { FaGraduationCap, FaCalendarAlt, FaMapMarkerAlt, FaTrophy, FaBrain, FaCo
 function Education() {
   const education = [
     {
-      degree: "Computer Engineering",
+      degree: "State Engineer in Computer Engineering",
       institution: "ENSA Tétouan",
-      period: "2020 - 2024",
-      location: "Tétouan, Morocco",
+      period: "2020 - 2025",
       specialization: "Information Systems and Decision Support",
-      description: "Comprehensive program covering software engineering, data science, and industrial applications.",
+      description: "Comprehensive program covering software engineering, algorithms, databases, and computer systems.",
       achievements: [
-        "Graduated with honors",
-        "Specialized in AI and computer vision",
+        "Graduated with highest honors (mention très bien)",
+        "Specialized in Information Systems and Decision Support",
         "Completed industrial internship at Lear Corporation",
         "Developed multiple real-world projects"
       ],
-      skills: ["Software Engineering", "Data Science", "AI & ML", "Industrial Applications"]
+      skills: ["Software Engineering", "Data Science", "Information Systems", "Industrial Applications"]
     }
   ];
 
@@ -56,10 +55,6 @@ function Education() {
                         <FaCalendarAlt className="text-purple-600" />
                         <span>{edu.period}</span>
                       </div>
-                      <div className="flex items-center space-x-2">
-                        <FaMapMarkerAlt className="text-orange-500" />
-                        <span>{edu.location}</span>
-                      </div>
                     </div>
                     <p className="text-lg text-blue-600 font-semibold">{edu.specialization}</p>
                   </div>
@@ -95,26 +90,6 @@ function Education() {
                       ))}
                     </ul>
                   </div>
-
-                  <div>
-                    <h4 className="text-lg font-semibold text-gray-800 mb-4 flex items-center">
-                      <FaBrain className="text-purple-500 mr-2" />
-                      Specializations:
-                    </h4>
-                    <div className="flex flex-wrap gap-2">
-                      {edu.skills.map((skill, skillIndex) => (
-                        <motion.span
-                          key={skillIndex}
-                          initial={{ opacity: 0, scale: 0.8 }}
-                          whileInView={{ opacity: 1, scale: 1 }}
-                          transition={{ duration: 0.5, delay: skillIndex * 0.1 }}
-                          className="px-3 py-1 bg-gradient-to-r from-blue-100 to-purple-100 text-blue-800 rounded-full text-sm font-medium border border-blue-200"
-                        >
-                          {skill}
-                        </motion.span>
-                      ))}
-                    </div>
-                  </div>
                 </div>
               </div>
             </motion.div>
@@ -127,22 +102,17 @@ function Education() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="text-center mt-16"
         >
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl p-6 text-white">
-              <FaCode className="text-4xl mb-4 mx-auto" />
-              <h3 className="text-xl font-bold mb-2">Software Engineering</h3>
-              <p className="opacity-90">Full-stack development and system architecture</p>
-            </div>
-            <div className="bg-gradient-to-r from-purple-600 to-purple-700 rounded-2xl p-6 text-white">
-              <FaBrain className="text-4xl mb-4 mx-auto" />
-              <h3 className="text-xl font-bold mb-2">AI & Computer Vision</h3>
-              <p className="opacity-90">Machine learning and industrial automation</p>
-            </div>
-            <div className="bg-gradient-to-r from-orange-500 to-orange-600 rounded-2xl p-6 text-white">
-              <FaIndustry className="text-4xl mb-4 mx-auto" />
-              <h3 className="text-xl font-bold mb-2">Industrial Applications</h3>
-              <p className="opacity-90">Real-world manufacturing and quality control</p>
-            </div>
+          <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-white">
+            <h3 className="text-2xl font-bold mb-4">I'm Looking for New Opportunities</h3>
+            <p className="text-lg mb-6 opacity-90">
+              Open to exciting roles in AI, computer vision, and software development
+            </p>
+            <a
+              href="#contact"
+              className="inline-block px-8 py-3 bg-white text-blue-600 rounded-full font-semibold hover:bg-gray-100 transition-all duration-300 transform hover:scale-105"
+            >
+              Get In Touch
+            </a>
           </div>
         </motion.div>
       </div>

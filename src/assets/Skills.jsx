@@ -3,46 +3,6 @@ import { motion } from "framer-motion";
 import { FaCode, FaDatabase, FaCloud, FaTools, FaLayerGroup, FaBrain, FaEye, FaIndustry } from "react-icons/fa";
 
 function Skills() {
-  const skillCategories = [
-    {
-      title: "Programming Languages",
-      skills: [
-        { name: "Python", level: 95 },
-        { name: "Bash", level: 85 },
-        { name: "SQL", level: 90 },
-        { name: "PHP", level: 80 }
-      ]
-    },
-    {
-      title: "AI & Computer Vision", 
-      skills: [
-        { name: "OpenCV", level: 90 },
-        { name: "YOLOv8", level: 85 },
-        { name: "PyTorch", level: 80 },
-        { name: "Roboflow", level: 75 },
-        { name: "Faster R-CNN", level: 70 }
-      ]
-    },
-    {
-      title: "Infrastructure & Cloud",
-      skills: [
-        { name: "Docker", level: 85 },
-        { name: "Proxmox", level: 80 },
-        { name: "Google Cloud", level: 75 },
-        { name: "Git", level: 90 }
-      ]
-    },
-    {
-      title: "Data & Analytics",
-      skills: [
-        { name: "MySQL", level: 90 },
-        { name: "PostgreSQL", level: 85 },
-        { name: "Power BI", level: 75 },
-        { name: "ETL", level: 80 }
-      ]
-    }
-  ];
-
   const skillCards = [
     {
       icon: <FaCode className="text-4xl" />,
@@ -57,13 +17,6 @@ function Skills() {
       description: "Advanced computer vision and machine learning for industrial applications.",
       items: ["OpenCV", "YOLOv8", "PyTorch", "Roboflow", "Faster R-CNN", "Computer Vision"],
       color: "purple",
-    },
-    {
-      icon: <FaIndustry className="text-4xl" />,
-      category: "Industrial Applications",
-      description: "Real-world manufacturing and quality control systems.",
-      items: ["Quality Control", "Defect Detection", "Automation", "Production Systems"],
-      color: "orange",
     },
     {
       icon: <FaDatabase className="text-4xl" />,
@@ -86,6 +39,13 @@ function Skills() {
       items: ["ETL", "Apache Airflow", "PySpark", "Pandas", "Data Warehousing", "Mage", "DBT", "BigQuery", "PowerBI"],
       color: "pink",
     },
+    {
+      icon: <FaLayerGroup className="text-4xl" />,
+      category: "Web Development",
+      description: "Full-stack web development with modern frameworks and technologies.",
+      items: ["React", "Node.js", "HTML/CSS", "REST APIs", "MVC Architecture", "Responsive Design"],
+      color: "orange",
+    },
   ];
 
   return (
@@ -107,47 +67,6 @@ function Skills() {
           </p>
         </motion.div>
 
-        {/* Skill Categories with Progress Bars */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="mb-16"
-        >
-          <h3 className="text-3xl font-bold text-center mb-12 text-gray-800">Core Competencies</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {skillCategories.map((category, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
-                className="bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-gray-200"
-              >
-                <h4 className="text-xl font-bold text-gray-800 mb-6">{category.title}</h4>
-                <div className="space-y-4">
-                  {category.skills.map((skill, skillIndex) => (
-                    <div key={skillIndex}>
-                      <div className="flex justify-between items-center mb-2">
-                        <span className="text-gray-700 font-medium">{skill.name}</span>
-                        <span className="text-gray-500 text-sm">{skill.level}%</span>
-                      </div>
-                      <div className="w-full bg-gray-200 rounded-full h-2">
-                        <motion.div
-                          initial={{ width: 0 }}
-                          whileInView={{ width: `${skill.level}%` }}
-                          transition={{ duration: 1, delay: skillIndex * 0.1 }}
-                          className="bg-gradient-to-r from-blue-600 to-purple-600 h-2 rounded-full"
-                        />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-
         {/* Skill Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {skillCards.map((skill, index) => (
@@ -158,7 +77,14 @@ function Skills() {
               transition={{ duration: 0.8, delay: index * 0.1 }}
               className="bg-white/80 backdrop-blur-sm p-6 rounded-xl hover:shadow-xl transition-all duration-300 border border-gray-200 transform hover:-translate-y-2"
             >
-              <div className={`text-${skill.color}-600 mb-4`}>
+              <div className={`mb-4 ${
+                skill.color === 'blue' ? 'text-blue-600' :
+                skill.color === 'purple' ? 'text-purple-600' :
+                skill.color === 'green' ? 'text-green-600' :
+                skill.color === 'indigo' ? 'text-indigo-600' :
+                skill.color === 'pink' ? 'text-pink-600' :
+                'text-orange-600'
+              }`}>
                 {skill.icon}
               </div>
               <h3 className="text-xl font-bold text-gray-800 mb-3">{skill.category}</h3>
@@ -169,7 +95,14 @@ function Skills() {
                 {skill.items.map((item, idx) => (
                   <span
                     key={idx}
-                    className={`bg-${skill.color}-100 text-${skill.color}-800 px-3 py-1 rounded-full text-sm font-medium border border-${skill.color}-200`}
+                    className={`px-3 py-1 rounded-full text-sm font-medium border ${
+                      skill.color === 'blue' ? 'bg-blue-100 text-blue-800 border-blue-200' :
+                      skill.color === 'purple' ? 'bg-purple-100 text-purple-800 border-purple-200' :
+                      skill.color === 'green' ? 'bg-green-100 text-green-800 border-green-200' :
+                      skill.color === 'indigo' ? 'bg-indigo-100 text-indigo-800 border-indigo-200' :
+                      skill.color === 'pink' ? 'bg-pink-100 text-pink-800 border-pink-200' :
+                      'bg-orange-100 text-orange-800 border-orange-200'
+                    }`}
                   >
                     {item}
                   </span>

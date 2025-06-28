@@ -14,9 +14,8 @@ function Projects() {
       {
         title: "AI-Powered Visual Defect Detection",
         category: "Industrial Computer Vision",
-        company: "Lear Corporation",
         year: "2025",
-        description: "Revolutionary AI system for real-time quality control in automotive manufacturing, detecting defects on car seats with unprecedented accuracy.",
+        description: "Advanced AI system for real-time quality control in manufacturing environments, detecting defects with high accuracy using computer vision.",
         technologies: ["YOLOv8", "RetinaNet", "Faster R-CNN", "OpenCV", "PyTorch", "Tkinter", "Python"],
         features: [
           "Real-time video stream processing from IP cameras",
@@ -52,9 +51,8 @@ function Projects() {
       {
         title: "Automated Data Pipeline System",
         category: "Data Engineering & Analytics", 
-        company: "Twins Groupe",
         year: "2024",
-        description: "Scalable ETL pipeline automating data synchronization between internal databases and Google BigQuery for advanced business intelligence.",
+        description: "Scalable ETL pipeline for data synchronization between multiple sources and Google BigQuery for advanced business intelligence.",
         technologies: ["Python", "ETL", "BigQuery", "SQL", "Cronjobs", "Google Cloud", "Data Processing"],
         features: [
           "Automated data extraction from multiple sources",
@@ -78,19 +76,18 @@ function Projects() {
           },
           {
             original: "https://i.ibb.co/qncJK0d/Screenshot-2025-01-15-195844.jpg",
-            thumbnail: "https://i.ibb.co/qncJK0d/Screenshot-2025-01-15-195844.jpg",
+            thumbnail: "https://i.ibb.co/qncJK0d/Screenshot-2025-01-195844.jpg",
           },
           {
             original: "https://i.ibb.co/W5jMyyv/Screenshot-2025-01-15-195916.jpg",
-            thumbnail: "https://i.ibb.co/W5jMyyv/Screenshot-2025-01-15-195916.jpg",
+            thumbnail: "https://i.ibb.co/W5jMyyv/Screenshot-2025-01-195916.jpg",
           },
         ],
         report: "",
       },
       {
-        title: "Operator Training Management",
+        title: "Operator Training Management System",
         category: "Web Application",
-        company: "Internal Project", 
         year: "2024",
         description: "Comprehensive training tracking system for industrial operators with approval workflows and progress monitoring.",
         technologies: ["PHP", "HTML", "CSS", "MySQL", "Apache", "MVC Architecture"],
@@ -128,9 +125,8 @@ function Projects() {
       {
         title: "Factory Maintenance Dashboard",
         category: "Industrial Web Interface",
-        company: "Lear Corporation",
         year: "2025", 
-        description: "Real-time maintenance log tracking system deployed on factory Apache servers for seamless operations monitoring.",
+        description: "Real-time maintenance log tracking system for seamless operations monitoring and equipment management.",
         technologies: ["PHP", "HTML", "JavaScript", "Apache", "MySQL", "Real-time Updates"],
         features: [
           "Real-time maintenance logging",
@@ -165,7 +161,9 @@ function Projects() {
       },
       {
         title: "Academic Performance Analysis System",
-        description: "Designed and implemented a Business Intelligence system for analyzing academic performance, including student attendance and grades. The project involved creating a Data Warehouse, an ETL pipeline using Python and Apache Airflow, and an interactive dashboard using Power BI.",
+        category: "Business Intelligence",
+        year: "2024",
+        description: "Comprehensive Business Intelligence system for analyzing academic performance, including student attendance and grades with interactive dashboards.",
         technologies: [
           "Business Intelligence",
           "Data Warehouse",
@@ -174,6 +172,19 @@ function Projects() {
           "Apache Airflow",
           "Power BI",
           "OLAP",
+        ],
+        features: [
+          "Data warehouse design and implementation",
+          "ETL pipeline using Python and Apache Airflow",
+          "Interactive dashboards with Power BI",
+          "Student performance analytics",
+          "Attendance tracking and reporting"
+        ],
+        impact: [
+          "Automated academic performance analysis",
+          "Improved data-driven decision making",
+          "Enhanced student progress tracking",
+          "Streamlined reporting processes"
         ],
         category: "data",
         github: "https://github.com/MedEZZOUAK/BI_PROJECT_ETL.git",
@@ -271,10 +282,6 @@ function Projects() {
                       <div className="flex items-center space-x-4 text-sm text-gray-600 mb-3">
                         <span className="flex items-center space-x-1">
                           <FaIndustry className="text-blue-600" />
-                          <span>{project.company}</span>
-                        </span>
-                        <span className="flex items-center space-x-1">
-                          <FaCalendarAlt className="text-purple-600" />
                           <span>{project.year}</span>
                         </span>
                       </div>
