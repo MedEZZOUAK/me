@@ -14,47 +14,43 @@ function Experience() {
 
   const experience = [
     {
-      title: "Projet de Fin d'Études (PFE)",
+      title: "Final Year Project (PFE)",
       company: "Lear Corporation",
-      period: "Feb 2025 - Aug 2025",
-      description: "Automatic visual defect detection on automotive seats - Final Year Project",
+      period: "Feb 2025 – Aug 2025",
+      description: "Development of a real-time visual defect detection system for automotive seat quality control.",
       achievements: [
-        "Developed real-time visual defect detection system for automotive seat quality control",
-        "Implemented YOLOv8, RetinaNet, and Faster R-CNN models achieving high accuracy in defect detection",
-        "Created operator-friendly GUI interface with live video stream for production line integration",
-        "Successfully integrated AI solution into existing JIT manufacturing workflow",
-        "Built comprehensive dashboard for real-time monitoring and log file tracking",
-        "Designed digital platform for operator training and performance tracking",
-        
+        "Designed a graphical user interface (GUI) with live video stream for production line integration",
+        "Integrated the AI solution into a Just-In-Time (JIT) manufacturing environment",
+        "Created a monitoring dashboard for real-time supervision and log tracking",
+        "Developed a digital training platform for operators",
+        "Used YOLOv8, RetinaNet, and Faster R-CNN for high-accuracy defect detection"
       ]
     },
     {
       title: "Freelance Web Developer",
-      company: "Twins Groupe", 
-      period: "Jan 2025 - Feb 2025",
-      description: "Web development and content creation for various client projects",
+      company: "Twins Groupe",
+      period: "Jan 2025 – Feb 2025",
+      description: "Contributed to the development of dynamic web projects in collaboration with the team.",
       achievements: [
-        "Developed responsive web applications using modern frontend technologies",
-        "Created engaging content for digital marketing campaigns",
-        "Implemented user-friendly interfaces and interactive features",
-        "Collaborated with clients to deliver customized solutions",
-        "Maintained and optimized existing web applications"
+        "Created custom templates using Twig and integrated business logic with PHP",
+        "Implemented interactive features using JavaScript, HTML, and CSS",
+        "Collaborated with clients to deliver tailored solutions"
       ]
     },
     {
-      title: "Web Developer & Automation Intern",
-      company: "Twins Groupe", 
+      title: "Data & Web Development Intern",
+      company: "Twins Groupe",
       period: "Jul 2024 - Sep 2024",
-      description: "Data flow automation and lightweight server-side system integration",
+      description: "Designed and developed a real-time ETL pipeline and automated data flows.",
       achievements: [
-        "Developed automated critical data synchronization solution via PHP scripts",
-        "Implemented scheduled update system based on cronjobs",
-        "Integrated with database and dynamic client-side content generation",
-        "Optimized existing process based on third-party API",
-        "Deployed and documented technical solution in production"
+        "Improved time accuracy from ±5 minutes to optimal precision",
+        "Reduced manual interventions by 90% using cron jobs",
+        "Developed new web pages and features based on user needs",
+        "Optimized existing processes through API integration and production deployment"
       ]
     }
   ];
+  
 
   const handleKeyDown = (event, action) => {
     if (event.key === 'Enter' || event.key === ' ') {
