@@ -8,8 +8,8 @@ import Experience from './assets/Experience'
 import Education from './assets/Education'
 import PerformanceMonitor from './components/PerformanceMonitor'
 
-// Lazy load components for better performance
-const LazyProjects = lazy(() => import('./assets/Projects'))
+// // Lazy load components for better performance
+// const LazyProjects = lazy(() => import('./assets/Projects'))
 
 // Error Boundary Component
 const ErrorBoundary = ({ children, fallback }) => {
@@ -50,7 +50,7 @@ function App() {
               </div>
             </div>
           }>
-            <LazyProjects />
+            {/* <LazyProjects /> */}
           </Suspense>
         </ErrorBoundary>
         

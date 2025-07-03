@@ -13,7 +13,8 @@ function Projects() {
     () => [
       {
         title: "AI-Powered Visual Defect Detection",
-        category: "Industrial Computer Vision",
+        category: "ai",
+        categoryLabel: "Industrial Computer Vision",
         year: "2025",
         description: "Advanced AI system for real-time quality control in manufacturing environments, detecting defects with high accuracy using computer vision.",
         technologies: ["YOLOv8", "RetinaNet", "Faster R-CNN", "OpenCV", "PyTorch", "Tkinter", "Python"],
@@ -30,7 +31,6 @@ function Projects() {
           "Enabled 24/7 automated quality monitoring",
           "Suggested PPE detection extensions"
         ],
-        category: "ai",
         github: "https://github.com/MedEZZOUAK/ai-defect-detection",
         images: [
           {
@@ -50,7 +50,8 @@ function Projects() {
       },
       {
         title: "Automated Data Pipeline System",
-        category: "Data Engineering & Analytics", 
+        category: "data",
+        categoryLabel: "Data Engineering & Analytics", 
         year: "2024",
         description: "Scalable ETL pipeline for data synchronization between multiple sources and Google BigQuery for advanced business intelligence.",
         technologies: ["Python", "ETL", "BigQuery", "SQL", "Cronjobs", "Google Cloud", "Data Processing"],
@@ -67,7 +68,6 @@ function Projects() {
           "Improved data accuracy and consistency",
           "Streamlined reporting workflows"
         ],
-        category: "data",
         github: "https://github.com/MedEZZOUAK/data-pipeline",
         images: [
           {
@@ -87,7 +87,8 @@ function Projects() {
       },
       {
         title: "Operator Training Management System",
-        category: "Web Application",
+        category: "fullstack",
+        categoryLabel: "Web Application",
         year: "2024",
         description: "Comprehensive training tracking system for industrial operators with approval workflows and progress monitoring.",
         technologies: ["PHP", "HTML", "CSS", "MySQL", "Apache", "MVC Architecture"],
@@ -104,7 +105,6 @@ function Projects() {
           "Enhanced compliance tracking",
           "Reduced administrative overhead"
         ],
-        category: "fullstack",
         github: "https://github.com/MedEZZOUAK/training-management",
         images: [
           {
@@ -124,7 +124,8 @@ function Projects() {
       },
       {
         title: "Factory Maintenance Dashboard",
-        category: "Industrial Web Interface",
+        category: "fullstack",
+        categoryLabel: "Industrial Web Interface",
         year: "2025", 
         description: "Real-time maintenance log tracking system for seamless operations monitoring and equipment management.",
         technologies: ["PHP", "HTML", "JavaScript", "Apache", "MySQL", "Real-time Updates"],
@@ -141,7 +142,6 @@ function Projects() {
           "Streamlined communication between shifts",
           "Better maintenance planning capabilities"
         ],
-        category: "fullstack",
         github: "https://github.com/MedEZZOUAK/maintenance-dashboard",
         images: [
           {
@@ -161,7 +161,8 @@ function Projects() {
       },
       {
         title: "Academic Performance Analysis System",
-        category: "Business Intelligence",
+        category: "data",
+        categoryLabel: "Business Intelligence",
         year: "2024",
         description: "Comprehensive Business Intelligence system for analyzing academic performance, including student attendance and grades with interactive dashboards.",
         technologies: [
@@ -186,7 +187,6 @@ function Projects() {
           "Enhanced student progress tracking",
           "Streamlined reporting processes"
         ],
-        category: "data",
         github: "https://github.com/MedEZZOUAK/BI_PROJECT_ETL.git",
         images: [
           {
@@ -291,8 +291,7 @@ function Projects() {
                       project.category === 'data' ? 'bg-blue-100 text-blue-800' :
                       'bg-green-100 text-green-800'
                     }`}>
-                      {project.category === 'ai' ? 'AI & CV' : 
-                       project.category === 'data' ? 'Data Engineering' : 'Full Stack'}
+                      {project.categoryLabel}
                     </span>
                   </div>
 

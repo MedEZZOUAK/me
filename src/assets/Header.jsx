@@ -202,7 +202,7 @@ function Header() {
         >
           <CTAButton href="#projects">View My Work</CTAButton>
           <CTAButton href="#contact" secondary>Get In Touch</CTAButton>
-          <CTAButton href={import.meta.env.BASE_URL + '/resume.pdf'} secondary>Download CV</CTAButton>
+          <CTAButton href={import.meta.env.BASE_URL + 'CV_EZZOUAK.pdf'} secondary target="_blank" rel="noopener noreferrer">Download CV</CTAButton>
         </motion.div>
       </div>
     </header>
