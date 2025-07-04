@@ -6,7 +6,6 @@ import Projects from './assets/Projects'
 import Skills from './assets/Skills'
 import Experience from './assets/Experience'
 import Education from './assets/Education'
-import PerformanceMonitor from './components/PerformanceMonitor'
 
 // // Lazy load components for better performance
 // const LazyProjects = lazy(() => import('./assets/Projects'))
@@ -50,7 +49,7 @@ function App() {
               </div>
             </div>
           }>
-            {/* <LazyProjects /> */}
+            <Projects></Projects>
           </Suspense>
         </ErrorBoundary>
         
@@ -63,15 +62,7 @@ function App() {
         </ErrorBoundary>
       </main>
       
-      <PerformanceMonitor />
-      
-      {/* Skip to main content link for accessibility */}
-      <a 
-        href="#main" 
-        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-blue-600 text-white px-4 py-2 rounded-md z-50"
-      >
-        Skip to main content
-      </a>
+  
     </>
   )
 }
