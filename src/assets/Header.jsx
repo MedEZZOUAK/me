@@ -256,7 +256,7 @@ function Header() {
               <CTAButton href="#contact" secondary>
                 {language === 'en' ? 'Get In Touch' : 'Me Contacter'}
               </CTAButton>
-              <CTAButton href={import.meta.env.BASE_URL + 'cv_EZZOUAK.pdf'} secondary target="_blank" rel="noopener noreferrer">
+              <CTAButton href="/cv_EZZOUAK.pdf" secondary target="_blank" rel="noopener noreferrer">
                 <FaDownload className="mr-2" />
                 {language === 'en' ? 'Download CV' : 'Télécharger CV'}
               </CTAButton>
