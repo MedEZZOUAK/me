@@ -1,4 +1,4 @@
-import { Suspense, lazy } from 'react';
+import { Suspense } from 'react';
 import About from './assets/About'
 import Contact from './assets/Contact'
 import Header from './assets/Header'
@@ -6,6 +6,7 @@ import Projects from './assets/Projects'
 import Skills from './assets/Skills'
 import Experience from './assets/Experience'
 import Education from './assets/Education'
+import SEO from './components/SEO'
 
 // // Lazy load components for better performance
 // const LazyProjects = lazy(() => import('./assets/Projects'))
@@ -23,6 +24,7 @@ const ErrorBoundary = ({ children, fallback }) => {
 function App() {
   return (
     <>
+      <SEO />
       <main role="main">
         <ErrorBoundary>
           <Header></Header>

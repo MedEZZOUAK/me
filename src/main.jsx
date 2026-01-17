@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import { HelmetProvider } from 'react-helmet-async'
 import App from './App.jsx'
 import './index.css'
 import { ThemeProvider } from './contexts/ThemeContext'
@@ -7,11 +8,13 @@ import { LanguageProvider } from './contexts/LanguageContext'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <ThemeProvider>
-      <LanguageProvider>
-        <App />
-      </LanguageProvider>
-    </ThemeProvider>
+    <HelmetProvider>
+      <ThemeProvider>
+        <LanguageProvider>
+          <App />
+        </LanguageProvider>
+      </ThemeProvider>
+    </HelmetProvider>
   </React.StrictMode>,
 )
 
@@ -32,7 +35,7 @@ if ('serviceWorker' in navigator) {
 const preloadCriticalResources = () => {
   const criticalResources = [
     '/profil.JPG',
-    '/resume.pdf',
+    '/MOHAMMED-EZ-ZOUAK-Resume.pdf',
     '/lear-demo.mp4'
   ];
 

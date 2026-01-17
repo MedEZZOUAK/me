@@ -1,24 +1,68 @@
-import React from "react";
 import { motion } from "framer-motion";
 import { FaGraduationCap, FaCalendarAlt, FaTrophy } from "react-icons/fa";
+import { useLanguage } from "../contexts/LanguageContext";
 
 function Education() {
-  const education = [
-    {
-      degree: "Diplôme d'Ingénieur d'État en Informatique",
-      institution: "ENSA Tétouan",
-      period: "2020 - 2025",
-      specialization: "Information Systems and Decision Support",
-      description: "Comprehensive program covering software engineering, algorithms, databases, and computer systems.",
-      achievements: [
-        "Graduated with highest honors (mention très bien)",
-        "Specialized in Information Systems and Decision Support",
-        "Completed industrial internship at Lear Corporation",
-        "Developed multiple real-world projects"
-      ],
-      skills: ["Software Engineering", "Data Science", "Information Systems", "Industrial Applications"]
+  const { language } = useLanguage();
+
+  const content = {
+    en: {
+      title: "Education",
+      graduated: "Graduated",
+      keyAchievements: "Key Achievements:",
+      ctaTitle: "Always Learning, Always Growing",
+      ctaBody:
+        "Continuously expanding my expertise in AI, computer vision, and full-stack development through real-world projects and challenges",
+      ctaButton: "Get In Touch"
+    },
+    fr: {
+      title: "Formation",
+      graduated: "Diplômé",
+      keyAchievements: "Réalisations Clés :",
+      ctaTitle: "Toujours Apprendre, Toujours Évoluer",
+      ctaBody:
+        "J'élargis continuellement mon expertise en IA, vision par ordinateur et développement full-stack à travers des projets réels et des défis techniques",
+      ctaButton: "Me Contacter"
     }
-  ];
+  };
+
+  const educationByLanguage = {
+    en: [
+      {
+        degree: "State Engineer Degree in Computer Science",
+        institution: "ENSA Tétouan",
+        period: "2020 - 2025",
+        specialization: "Information Systems and Decision Support",
+        description: "Comprehensive program covering software engineering, algorithms, databases, and computer systems.",
+        achievements: [
+          "Graduated with highest honors",
+          "Specialized in Information Systems and Decision Support",
+          "Completed industrial internship at Lear Corporation",
+          "Developed multiple real-world projects"
+        ],
+        skills: ["Software Engineering", "Data Science", "Information Systems", "Industrial Applications"]
+      }
+    ],
+    fr: [
+      {
+        degree: "Diplôme d'Ingénieur d'État en Informatique",
+        institution: "ENSA Tétouan",
+        period: "2020 - 2025",
+        specialization: "Systèmes d'Information et Aide à la Décision",
+        description: "Programme complet couvrant le génie logiciel, les algorithmes, les bases de données et les systèmes informatiques.",
+        achievements: [
+          "Diplômé avec mention très bien",
+          "Spécialisation en Systèmes d'Information et Aide à la Décision",
+          "Stage industriel réalisé chez Lear Corporation",
+          "Réalisation de plusieurs projets concrets"
+        ],
+        skills: ["Génie Logiciel", "Data Science", "Systèmes d'Information", "Applications Industrielles"]
+      }
+    ]
+  };
+
+  const t = content[language];
+  const education = educationByLanguage[language];
 
   return (
     <section id="education" className="relative min-h-screen bg-gradient-to-br from-white via-blue-50 to-indigo-50 dark:from-dark-bg dark:via-dark-surface dark:to-dark-bg transition-colors duration-300 py-20">
@@ -31,7 +75,7 @@ function Education() {
           transition={{ duration: 0.8 }}
           className="text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 dark:from-blue-400 dark:via-purple-400 dark:to-blue-400 bg-clip-text text-transparent"
         >
-          Education
+          {t.title}
         </motion.h2>
 
         <div className="max-w-4xl mx-auto">
@@ -62,7 +106,7 @@ function Education() {
                   </div>
                   <div className="mt-4 md:mt-0">
                     <span className="inline-block px-4 py-2 bg-gradient-to-r from-green-600 to-blue-600 dark:from-green-500 dark:to-blue-500 text-white rounded-full text-sm font-semibold">
-                      Graduated
+                      {t.graduated}
                     </span>
                   </div>
                 </div>
@@ -75,7 +119,7 @@ function Education() {
                   <div>
                     <h4 className="text-lg font-semibold text-slate-800 dark:text-gray-200 mb-4 flex items-center">
                       <FaTrophy className="text-yellow-500 dark:text-yellow-400 mr-2" />
-                      Key Achievements:
+                      {t.keyAchievements}
                     </h4>
                     <ul className="space-y-3">
                       {edu.achievements.map((achievement, achievementIndex) => (
@@ -107,15 +151,15 @@ function Education() {
           className="text-center mt-16"
         >
           <div className="bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-500 dark:to-purple-500 rounded-2xl p-8 text-white max-w-3xl mx-auto">
-            <h3 className="text-2xl font-bold mb-4">Always Learning, Always Growing</h3>
+            <h3 className="text-2xl font-bold mb-4">{t.ctaTitle}</h3>
             <p className="text-lg mb-6 opacity-90">
-              Continuously expanding my expertise in AI, computer vision, and full-stack development through real-world projects and challenges
+              {t.ctaBody}
             </p>
             <a
               href="#contact"
               className="inline-block px-8 py-3 bg-white dark:bg-gray-100 text-blue-600 dark:text-blue-700 rounded-full font-semibold hover:bg-gray-100 dark:hover:bg-gray-200 transition-all duration-300 transform hover:scale-105"
             >
-              Get In Touch
+              {t.ctaButton}
             </a>
           </div>
         </motion.div>

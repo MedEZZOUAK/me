@@ -1,6 +1,6 @@
-import React from "react";
 import { motion } from "framer-motion";
-import { FaLaptopCode, FaServer, FaDatabase, FaCloud, FaCogs, FaGraduationCap, FaIndustry, FaBrain, FaGlobe, FaCode } from "react-icons/fa";
+import PropTypes from "prop-types";
+import { FaLaptopCode, FaServer, FaDatabase, FaCloud, FaCogs, FaGraduationCap, FaIndustry, FaBrain, FaGlobe } from "react-icons/fa";
 import { useLanguage } from "../contexts/LanguageContext";
 
 function About() {
@@ -12,6 +12,7 @@ function About() {
       description1: "Software Engineer and Data Engineer with solid experience in designing scalable web applications and automation pipelines. Mastery of",
       description2: "and cloud data workflows.",
       description3: "Proven ability to bridge technical and business needs through fluent communication and cross-functional collaboration. Versatile and problem-solving oriented, with expertise covering",
+      highlightExpertise: "Backend, frontend, and data systems",
       description4: "Currently",
       description5: "at ITSS Paris, I work on maintaining and evolving web applications in production, with a client-facing technical interface to qualify needs and present solutions.",
       currentPosition: "Full Stack Developer",
@@ -53,6 +54,7 @@ function About() {
       description1: "Ingénieur Logiciel et Data Engineer avec une solide expérience dans la conception d'applications web évolutives et de pipelines d'automatisation. Maîtrise de",
       description2: "et des workflows de données cloud.",
       description3: "Capacité éprouvée à faire le lien entre les besoins techniques et business grâce à une communication fluide et une collaboration transverse. Polyvalent et orienté résolution de problèmes, avec une expertise couvrant",
+      highlightExpertise: "Backend, frontend et systèmes de données",
       description4: "Actuellement",
       description5: "chez ITSS Paris, je travaille sur la maintenance et l'évolution d'applications web en production, avec une interface technique client pour qualifier les besoins et présenter les solutions.",
       currentPosition: "Développeur Full Stack",
@@ -119,7 +121,7 @@ function About() {
               {t.description1} <span className="text-blue-600 dark:text-blue-400 font-semibold">Python, Django, React</span> {t.description2}
             </p>
             <p>
-              {t.description3} <span className="text-purple-600 dark:text-purple-400 font-semibold">Backend, Frontend et systèmes de données</span>.
+              {t.description3} <span className="text-purple-600 dark:text-purple-400 font-semibold">{t.highlightExpertise}</span>.
             </p>
             <p>
               {t.description4} <span className="text-orange-600 dark:text-orange-400 font-semibold">{t.currentPosition}</span> {t.description5}
@@ -268,6 +270,24 @@ const ExpertiseCard = ({ icon, title, description, color }) => {
       </div>
     </div>
   );
+};
+
+QuickFactCard.propTypes = {
+  icon: PropTypes.node.isRequired,
+  title: PropTypes.string.isRequired,
+  subtitle: PropTypes.string,
+  color: PropTypes.oneOf(['blue', 'purple', 'orange', 'green', 'pink', 'indigo']).isRequired
+};
+
+QuickFactCard.defaultProps = {
+  subtitle: undefined
+};
+
+ExpertiseCard.propTypes = {
+  icon: PropTypes.node.isRequired,
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  color: PropTypes.oneOf(['blue', 'purple', 'orange', 'green', 'pink', 'indigo']).isRequired
 };
 
 export default About;

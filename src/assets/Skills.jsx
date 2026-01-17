@@ -1,49 +1,124 @@
-import React from "react";
 import { motion } from "framer-motion";
-import { FaCode, FaDatabase, FaCloud, FaTools, FaLayerGroup, FaBrain, FaEye } from "react-icons/fa";
+import { FaCode, FaDatabase, FaCloud, FaTools, FaLayerGroup, FaEye } from "react-icons/fa";
+import { useLanguage } from "../contexts/LanguageContext";
 
 function Skills() {
+  const { language } = useLanguage();
+
+  const content = {
+    en: {
+      title: "Technical Skills",
+      subtitle:
+        "Comprehensive expertise across AI, computer vision, and industrial applications, with a focus on building scalable, efficient, and maintainable solutions using modern technologies and best practices."
+    },
+    fr: {
+      title: "Compétences Techniques",
+      subtitle:
+        "Expertise complète en IA, vision par ordinateur et applications industrielles, avec un focus sur des solutions évolutives, efficaces et maintenables grâce aux technologies modernes et aux bonnes pratiques."
+    }
+  };
+
   const skillCards = [
     {
+      id: "programming",
       icon: <FaCode className="text-4xl" />,
-      category: "Programming & Languages",
-      description: "Experience in various programming paradigms and languages for software development.",
-      items: ["Python", "Java", "JavaScript", "SQL", "PHP", "C++", "Bash"],
+      content: {
+        en: {
+          category: "Programming & Languages",
+          description: "Experience in various programming paradigms and languages for software development.",
+          items: ["Python", "Java", "JavaScript", "SQL", "PHP", "C++", "Bash"]
+        },
+        fr: {
+          category: "Programmation & Langages",
+          description: "Expérience des paradigmes de programmation et des langages pour le développement logiciel.",
+          items: ["Python", "Java", "JavaScript", "SQL", "PHP", "C++", "Bash"]
+        }
+      },
       color: "blue",
     },
     {
+      id: "ai",
       icon: <FaEye className="text-4xl" />,
-      category: "AI & Computer Vision",
-      description: "Advanced computer vision and machine learning for industrial applications.",
-      items: ["YOLOv8", "PyTorch", "OpenCV", "RetinaNet", "Faster R-CNN", "Inférence temps réel", "Computer Vision"],
+      content: {
+        en: {
+          category: "AI & Computer Vision",
+          description: "Advanced computer vision and machine learning for industrial applications.",
+          items: ["YOLOv8", "PyTorch", "OpenCV", "RetinaNet", "Faster R-CNN", "Real-time inference", "Computer Vision"]
+        },
+        fr: {
+          category: "IA & Vision par Ordinateur",
+          description: "Vision par ordinateur avancée et apprentissage automatique pour des applications industrielles.",
+          items: ["YOLOv8", "PyTorch", "OpenCV", "RetinaNet", "Faster R-CNN", "Inférence temps réel", "Vision par ordinateur"]
+        }
+      },
       color: "purple",
     },
     {
+      id: "database",
       icon: <FaDatabase className="text-4xl" />,
-      category: "Database & Storage",
-      description: "Experience with various database systems and data modeling techniques.",
-      items: ["MySQL", "PostgreSQL", "MongoDB", "Redis", "OracleDB", "Database Design"],
+      content: {
+        en: {
+          category: "Database & Storage",
+          description: "Experience with various database systems and data modeling techniques.",
+          items: ["MySQL", "PostgreSQL", "MongoDB", "Redis", "OracleDB", "Database Design"]
+        },
+        fr: {
+          category: "Bases de Données & Stockage",
+          description: "Expérience avec différents systèmes de bases de données et techniques de modélisation des données.",
+          items: ["MySQL", "PostgreSQL", "MongoDB", "Redis", "OracleDB", "Conception de bases de données"]
+        }
+      },
       color: "green",
     },
     {
+      id: "cloud",
       icon: <FaCloud className="text-4xl" />,
-      category: "Cloud & DevOps",
-      description: "Implementation of cloud infrastructure and CI/CD pipelines.",
-      items: ["Docker", "Terraform", "Git", "CI/CD", "GCP"],
+      content: {
+        en: {
+          category: "Cloud & DevOps",
+          description: "Implementation of cloud infrastructure and CI/CD pipelines.",
+          items: ["Docker", "Terraform", "Git", "CI/CD", "GCP"]
+        },
+        fr: {
+          category: "Cloud & DevOps",
+          description: "Mise en place d'infrastructures cloud et de pipelines CI/CD.",
+          items: ["Docker", "Terraform", "Git", "CI/CD", "GCP"]
+        }
+      },
       color: "indigo",
     },
     {
+      id: "data",
       icon: <FaTools className="text-4xl" />,
-      category: "Data Engineering",
-      description: "Building data pipelines and ETL processes for data transformation.",
-      items: ["ETL", "Apache Airflow", "BigQuery", "SQL", "Data Warehousing", "Automatisation", "PySpark", "Pandas"],
+      content: {
+        en: {
+          category: "Data Engineering",
+          description: "Building data pipelines and ETL processes for data transformation.",
+          items: ["ETL", "Apache Airflow", "BigQuery", "SQL", "Data Warehousing", "Automation", "PySpark", "Pandas"]
+        },
+        fr: {
+          category: "Ingénierie des Données",
+          description: "Construction de pipelines de données et de processus ETL pour la transformation.",
+          items: ["ETL", "Apache Airflow", "BigQuery", "SQL", "Entrepôt de données", "Automatisation", "PySpark", "Pandas"]
+        }
+      },
       color: "pink",
     },
     {
+      id: "web",
       icon: <FaLayerGroup className="text-4xl" />,
-      category: "Web Development",
-      description: "Full-stack web development with modern frameworks and technologies.",
-      items: ["Django", "React", "Spring Boot", "JavaScript", "PHP", "Twig", "Drupal", "HTML/CSS", "REST APIs", "MVC Architecture"],
+      content: {
+        en: {
+          category: "Web Development",
+          description: "Full-stack web development with modern frameworks and technologies.",
+          items: ["Django", "React", "Spring Boot", "JavaScript", "PHP", "Twig", "Drupal", "HTML/CSS", "REST APIs", "MVC Architecture"]
+        },
+        fr: {
+          category: "Développement Web",
+          description: "Développement web full-stack avec des frameworks et technologies modernes.",
+          items: ["Django", "React", "Spring Boot", "JavaScript", "PHP", "Twig", "Drupal", "HTML/CSS", "APIs REST", "Architecture MVC"]
+        }
+      },
       color: "orange",
     },
   ];
@@ -78,6 +153,8 @@ function Skills() {
     return colors[color] || colors.blue;
   };
 
+  const t = content[language];
+
   return (
     <section id="skills" className="relative min-h-screen bg-gradient-to-br from-white via-blue-50 to-indigo-50 dark:from-dark-bg dark:via-dark-surface dark:to-dark-bg transition-colors duration-300 py-20">
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#3b82f610_1px,transparent_1px),linear-gradient(to_bottom,#3b82f610_1px,transparent_1px)] bg-[size:24px_24px] dark:bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] opacity-60" aria-hidden="true"></div>
@@ -90,11 +167,10 @@ function Skills() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 dark:from-blue-400 dark:via-purple-400 dark:to-blue-400 bg-clip-text text-transparent">
-            Technical Skills
+            {t.title}
           </h2>
           <p className="text-slate-700 dark:text-gray-300 text-lg max-w-3xl mx-auto font-medium">
-            Comprehensive expertise across AI, computer vision, and industrial applications, with a focus on building scalable, 
-            efficient, and maintainable solutions using modern technologies and best practices.
+            {t.subtitle}
           </p>
         </motion.div>
 
@@ -102,9 +178,10 @@ function Skills() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {skillCards.map((skill, index) => {
             const colorClasses = getColorClasses(skill.color);
+            const skillText = skill.content[language];
             return (
               <motion.div
-                key={index}
+                key={skill.id}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -114,12 +191,12 @@ function Skills() {
                 <div className={`mb-4 ${colorClasses.icon}`}>
                   {skill.icon}
                 </div>
-                <h3 className="text-xl font-bold text-slate-800 dark:text-gray-200 mb-3">{skill.category}</h3>
+                <h3 className="text-xl font-bold text-slate-800 dark:text-gray-200 mb-3">{skillText.category}</h3>
                 <p className="text-slate-600 dark:text-gray-400 mb-4 text-sm leading-relaxed">
-                  {skill.description}
+                  {skillText.description}
                 </p>
                 <div className="flex flex-wrap gap-2">
-                  {skill.items.map((item, idx) => (
+                  {skillText.items.map((item, idx) => (
                     <span
                       key={idx}
                       className={`px-3 py-1 rounded-full text-sm font-medium border ${colorClasses.badge}`}

@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { FaGithub, FaLinkedin, FaEnvelope, FaBars, FaTimes, FaMoon, FaSun, FaDownload, FaArrowDown } from "react-icons/fa";
 import { useImageLazyLoad } from "../hooks/useLazyLoad";
@@ -256,7 +257,7 @@ function Header() {
               <CTAButton href="#contact" secondary>
                 {language === 'en' ? 'Get In Touch' : 'Me Contacter'}
               </CTAButton>
-              <CTAButton href="/cv_EZZOUAK.pdf" secondary target="_blank" rel="noopener noreferrer">
+              <CTAButton href="/MOHAMMED-EZ-ZOUAK-Resume.pdf" secondary target="_blank" rel="noopener noreferrer">
                 <FaDownload className="mr-2" />
                 {language === 'en' ? 'Download CV' : 'Télécharger CV'}
               </CTAButton>
@@ -347,5 +348,26 @@ const CTAButton = ({ href, children, secondary, ...props }) => (
     {children}
   </a>
 );
+
+NavLink.propTypes = {
+  href: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired
+};
+
+SocialLink.propTypes = {
+  href: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+  tooltip: PropTypes.string.isRequired
+};
+
+CTAButton.propTypes = {
+  href: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+  secondary: PropTypes.bool
+};
+
+CTAButton.defaultProps = {
+  secondary: false
+};
 
 export default Header;

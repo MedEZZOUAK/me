@@ -1,356 +1,532 @@
-import React, { useState, useMemo } from "react";
+import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   FaGithub,
   FaImages,
   FaFileDownload,
   FaIndustry,
-  FaEye,
   FaBrain,
   FaDatabase,
   FaCode,
-  FaCalendarAlt,
 } from "react-icons/fa";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
+import PropTypes from "prop-types";
+import { useLanguage } from "../contexts/LanguageContext";
 
 function Projects() {
   const [activeTab, setActiveTab] = useState("all");
   const [selectedProject, setSelectedProject] = useState(null);
   const [showGallery, setShowGallery] = useState(false);
+  const { language } = useLanguage();
 
+  const content = {
+    en: {
+      title: "Featured Projects",
+      tabs: {
+        all: "All Projects",
+        ai: "AI & Computer Vision",
+        data: "Data Engineering",
+        fullstack: "Full Stack"
+      },
+      labels: {
+        technologies: "Technologies:",
+        features: "Key Features:",
+        impact: "Impact:"
+      },
+      actions: {
+        viewCode: "View Code",
+        viewImages: "View Images",
+        viewReport: "View Report"
+      }
+    },
+    fr: {
+      title: "Projets Réalisés",
+      tabs: {
+        all: "Tous les Projets",
+        ai: "IA & Vision par Ordinateur",
+        data: "Ingénierie des Données",
+        fullstack: "Full Stack"
+      },
+      labels: {
+        technologies: "Technologies :",
+        features: "Fonctionnalités Clés :",
+        impact: "Impact :"
+      },
+      actions: {
+        viewCode: "Voir le Code",
+        viewImages: "Voir les Images",
+        viewReport: "Voir le Rapport"
+      }
+    }
+  };
+
+  const baseProjects = useMemo(() => ([
+    {
+      id: "admin-digitalization",
+      title: "Administrative Process Digitalization",
+      category: "fullstack",
+      year: "2024",
+      technologies: ["React", "Spring Boot", "Docker", "Microservices"],
+      github: "https://github.com/Ayuubakb/Urbanisme",
+      images: [
+        {
+          original: "https://i.ibb.co/F5pBKXJ/arch.png",
+          thumbnail: "https://i.ibb.co/F5pBKXJ/arch.png",
+        },
+        {
+          original: "https://i.ibb.co/9v72z2k/pic2.jpg",
+          thumbnail: "https://i.ibb.co/9v72z2k/pic2.jpg",
+        },
+        {
+          original: "https://i.ibb.co/Tk1fdmR/pic1.jpg",
+          thumbnail: "https://i.ibb.co/Tk1fdmR/pic1.jpg",
+        },
+      ],
+      report: import.meta.env.BASE_URL + "report.pdf",
+      content: {
+        en: {
+          categoryLabel: "Fullstack Web Application",
+          description:
+            "Created two web platforms using React and Spring Boot to automate the issuance of residence certificates and trade registers, modernizing administrative processes as part of Digital Morocco 2030.",
+          features: [
+            "Online Application Submission & Tracking",
+            "Digital Document Generation",
+            "User Authentication & Role-Based Access Control",
+            "Integrated Notification System",
+            "Rendezvous Scheduling & Management",
+          ],
+          impact: [
+            "Significant reduction in administrative processing time",
+            "Increased operational efficiency and resource utilization",
+            "Enhanced user satisfaction through streamlined online services",
+            "Achieved notable cost savings by minimizing manual processes",
+            "Improved transparency and reduced bureaucracy in administrative procedures",
+            "Directly contributes to the Digital Morocco 2030 initiative's digitalization goals",
+          ]
+        },
+        fr: {
+          categoryLabel: "Application Web Fullstack",
+          description:
+            "Création de deux plateformes web avec React et Spring Boot pour automatiser la délivrance des certificats de résidence et des registres de commerce, modernisant les processus administratifs dans le cadre de Digital Morocco 2030.",
+          features: [
+            "Dépôt et suivi des demandes en ligne",
+            "Génération numérique des documents",
+            "Authentification des utilisateurs et contrôle d'accès par rôles",
+            "Système de notifications intégré",
+            "Planification et gestion des rendez-vous",
+          ],
+          impact: [
+            "Réduction significative du temps de traitement administratif",
+            "Amélioration de l'efficacité opérationnelle et de l'utilisation des ressources",
+            "Meilleure satisfaction des usagers via des services en ligne fluides",
+            "Réduction des coûts grâce à la diminution des processus manuels",
+            "Transparence renforcée et réduction de la bureaucratie",
+            "Contribution directe aux objectifs de digitalisation de Digital Morocco 2030",
+          ]
+        }
+      }
+    },
+    {
+      id: "phd-enrollment",
+      title: "PhD Enrollment System",
+      category: "fullstack",
+      year: "2024",
+      technologies: ["Angular", "Spring Boot", "Docker"],
+      github: "https://github.com/MedEZZOUAK/Full-project.git",
+      images: [
+        {
+          original: "https://i.ibb.co/RhxjNzC/Register.jpg",
+          thumbnail: "https://i.ibb.co/RhxjNzC/Register.jpg",
+        },
+        {
+          original:
+            "https://i.ibb.co/qncJK0d/Screenshot-2025-01-15-195844.jpg",
+          thumbnail:
+            "https://i.ibb.co/qncJK0d/Screenshot-2025-01-15-195844.jpg",
+        },
+        {
+          original:
+            "https://i.ibb.co/W5jMyyv/Screenshot-2025-01-15-195916.jpg",
+          thumbnail:
+            "https://i.ibb.co/W5jMyyv/Screenshot-2025-01-15-195916.jpg",
+        },
+      ],
+      report: import.meta.env.BASE_URL + "PhD/GestionDoctorat.pdf",
+      content: {
+        en: {
+          categoryLabel: "Fullstack Web Application",
+          description:
+            "Designed and developed a complete web application for managing PhD enrollments using Angular (frontend) and Spring Boot (backend), ensuring a scalable and efficient infrastructure.",
+          features: [
+            "Online Application Submission & Document Upload",
+            "Real-time Application Status Tracking",
+            "Personalized Student Profile Management",
+            "Comprehensive Application Review & Approval Workflow",
+            "Robust Student Management & Reporting Tools",
+            "Integrated Notification System for Key Updates",
+          ],
+          impact: [
+            "Eliminated paper-based processes, achieving full digitalization of PhD enrollments",
+            "Significantly reduced administrative burden for faculty and staff",
+            "Enabled faster processing and decision-making for applications",
+            "Ensured better data management and integrity for enrollment records",
+            "Improved communication between applicants and administrators",
+            "Increased overall enrollment efficiency and operational transparency",
+          ]
+        },
+        fr: {
+          categoryLabel: "Application Web Fullstack",
+          description:
+            "Conception et développement d'une application web complète pour gérer les inscriptions en doctorat avec Angular (frontend) et Spring Boot (backend), garantissant une infrastructure évolutive et efficace.",
+          features: [
+            "Dépôt de candidature et téléchargement de documents en ligne",
+            "Suivi en temps réel de l'état des candidatures",
+            "Gestion personnalisée des profils étudiants",
+            "Workflow complet de revue et validation des dossiers",
+            "Outils robustes de gestion des étudiants et de reporting",
+            "Système de notifications intégré pour les étapes clés",
+          ],
+          impact: [
+            "Suppression des processus papier grâce à une digitalisation complète",
+            "Réduction significative de la charge administrative pour les équipes pédagogiques",
+            "Accélération du traitement et de la prise de décision",
+            "Meilleure gestion et intégrité des données d'inscription",
+            "Communication améliorée entre candidats et administrateurs",
+            "Efficacité globale accrue et transparence opérationnelle",
+          ]
+        }
+      }
+    },
+    {
+      id: "cardio-prediction",
+      title: "AI Cardiovascular Disease Prediction Model",
+      category: "data",
+      year: "2024",
+      technologies: [
+        "Python",
+        "Jupyter Notebooks",
+        "Machine Learning",
+        "Scikit-learn",
+        "Pandas",
+        "Matplotlib/Seaborn",
+      ],
+      github: "https://github.com/MedEZZOUAK/ia_cardio.git",
+      images: [
+        {
+          original: "https://i.ibb.co/5sD0bYc/output.png",
+          thumbnail: "https://i.ibb.co/5sD0bYc/output.png",
+        },
+        {
+          original:
+            "https://i.ibb.co/4SD6b90/Screenshot-2025-01-16-135523.jpg",
+          thumbnail:
+            "https://i.ibb.co/4SD6b90/Screenshot-2025-01-16-135523.jpg",
+        },
+        {
+          original:
+            "https://i.ibb.co/YcW03Mx/Screenshot-2025-01-16-135559.jpg",
+          thumbnail:
+            "https://i.ibb.co/YcW03Mx/Screenshot-2025-01-16-135559.jpg",
+        },
+        {
+          original:
+            "https://i.ibb.co/m58jRTZ/Screenshot-2025-01-16-135621.jpg",
+          thumbnail:
+            "https://i.ibb.co/m58jRTZ/Screenshot-2025-01-16-135621.jpg",
+        },
+        {
+          original:
+            "https://i.ibb.co/Vpctccq/Screenshot-2025-01-16-135646.jpg",
+          thumbnail:
+            "https://i.ibb.co/Vpctccq/Screenshot-2025-01-16-135646.jpg",
+        },
+      ],
+      report: "",
+      content: {
+        en: {
+          categoryLabel: "Data Science & AI",
+          description:
+            "Developed a predictive model for cardiovascular diseases using Python and Jupyter Notebooks. The project involved extensive data preprocessing, feature engineering, and evaluation of various machine learning algorithms to identify optimal predictive performance.",
+          features: [
+            "Comprehensive Data Preprocessing & Cleaning",
+            "Advanced Feature Engineering for Medical Data",
+            "Application of Multiple Classification Algorithms (e.g., Logistic Regression, SVM, Random Forest)",
+            "Model Training, Validation, and Hyperparameter Tuning",
+            "Performance Evaluation using Metrics like Accuracy, Precision, Recall, and F1-Score",
+            "Data Visualization for Exploratory Data Analysis and Model Insights",
+          ],
+          impact: [
+            "Provided a foundational AI model for early risk assessment of cardiovascular diseases",
+            "Demonstrated potential to assist healthcare professionals in proactive patient care",
+            "Contributed to data-driven decision-making in medical diagnostics",
+            "Showcased proficiency in handling and analyzing complex health datasets",
+            "Offered insights into key risk factors for cardiovascular conditions through feature importance analysis",
+          ]
+        },
+        fr: {
+          categoryLabel: "Data Science & IA",
+          description:
+            "Développement d'un modèle prédictif des maladies cardiovasculaires avec Python et Jupyter Notebooks. Le projet a inclus un prétraitement avancé des données, l'ingénierie des features et l'évaluation de plusieurs algorithmes de machine learning pour identifier les meilleures performances.",
+          features: [
+            "Prétraitement et nettoyage complets des données",
+            "Ingénierie avancée des features pour données médicales",
+            "Application de plusieurs algorithmes de classification (ex. Régression Logistique, SVM, Random Forest)",
+            "Entraînement, validation et tuning des hyperparamètres",
+            "Évaluation des performances via Accuracy, Precision, Recall et F1-Score",
+            "Visualisation des données pour l'analyse exploratoire et l'interprétation des modèles",
+          ],
+          impact: [
+            "Fourniture d'un modèle IA de base pour l'évaluation précoce des risques cardiovasculaires",
+            "Potentiel d'assistance aux professionnels de santé pour une prise en charge proactive",
+            "Contribution à une prise de décision médicale pilotée par les données",
+            "Démonstration de compétences dans l'analyse de datasets santé complexes",
+            "Mise en évidence des facteurs de risque clés via l'analyse d'importance des variables",
+          ]
+        }
+      }
+    },
+    {
+      id: "academic-bi",
+      title: "Academic Performance Analysis System",
+      category: "data",
+      year: "2024",
+      technologies: [
+        "Business Intelligence",
+        "Data Warehouse",
+        "ETL",
+        "Python",
+        "Apache Airflow",
+        "Power BI",
+        "OLAP",
+        "SQL (for DWH)",
+        "DAX",
+        "OLAP CUB "
+      ],
+      github: "https://github.com/MedEZZOUAK/BI_PROJECT_ETL.git",
+      images: [
+        {
+          original: "https://i.ibb.co/yFTtcXG/page1.jpg",
+          thumbnail: "https://i.ibb.co/yFTtcXG/page1.jpg",
+        },
+        {
+          original: "https://i.ibb.co/jMvDjGt/page2.jpg",
+          thumbnail: "https://i.ibb.co/jMvDjGt/page2.jpg",
+        },
+        {
+          original: "https://i.ibb.co/KXcSZ4m/page3.jpg",
+          thumbnail: "https://i.ibb.co/KXcSZ4m/page3.jpg",
+        },
+        {
+          original: "https://i.ibb.co/kycRb9m/page4.jpg",
+          thumbnail: "https://i.ibb.co/kycRb9m/page4.jpg",
+        },
+        {
+          original: "https://i.ibb.co/py4BG9g/page5.jpg",
+          thumbnail: "https://i.ibb.co/py4BG9g/page5.jpg",
+        },
+        {
+          original:
+            "https://i.ibb.co/KbBqkZM/Screenshot-2025-01-16-145535.jpg",
+          thumbnail:
+            "https://i.ibb.co/KbBqkZM/Screenshot-2025-01-16-145535.jpg",
+        },
+      ],
+      report: import.meta.env.BASE_URL + "Bi/Rapport-MiniProjetBI_GRP8.pdf",
+      content: {
+        en: {
+          categoryLabel: "Business Intelligence",
+          description:
+            "Designed and implemented a Business Intelligence system for analyzing academic performance, including student attendance and grades. The project involved creating a robust Data Warehouse, developing an automated ETL pipeline using Python and Apache Airflow, and building an interactive dashboard with Power BI to provide insightful analytics.",
+          features: [
+            "Centralized Data Warehouse for Integrated Academic Data",
+            "Automated ETL Pipeline for Data Extraction, Transformation, and Loading (Python, Apache Airflow)",
+            "Interactive Dashboards for Visualizing Student Grades and Attendance (Power BI)",
+            "Multi-dimensional Analysis Capabilities (OLAP)",
+            "Trend Analysis and Performance Tracking over Time",
+            "Drill-down Capabilities for Granular Academic Insights",
+            "Customizable Reporting for Academic Stakeholders",
+          ],
+          impact: [
+            "Provided academic institutions with data-driven insights into student performance trends",
+            "Enabled proactive identification of at-risk students through real-time attendance and grade monitoring",
+            "Improved decision-making for curriculum development and resource allocation",
+            "Streamlined data processing and reporting, reducing manual effort and errors",
+            "Enhanced transparency and accessibility of academic performance data for educators and administrators",
+            "Laid the groundwork for predictive analytics in academic success and retention",
+          ]
+        },
+        fr: {
+          categoryLabel: "Business Intelligence",
+          description:
+            "Conception et implémentation d'un système de Business Intelligence pour analyser la performance académique (assiduité et notes). Le projet a inclus la création d'un Data Warehouse robuste, le développement d'un pipeline ETL automatisé avec Python et Apache Airflow, et un tableau de bord interactif Power BI pour des analyses pertinentes.",
+          features: [
+            "Data Warehouse centralisé pour intégrer les données académiques",
+            "Pipeline ETL automatisé pour l'extraction, la transformation et le chargement (Python, Apache Airflow)",
+            "Dashboards interactifs pour visualiser notes et présence (Power BI)",
+            "Capacités d'analyse multidimensionnelle (OLAP)",
+            "Analyse des tendances et suivi des performances dans le temps",
+            "Fonctionnalités de drill-down pour des insights granulaires",
+            "Reporting personnalisable pour les parties prenantes académiques",
+          ],
+          impact: [
+            "Apport d'insights data-driven sur les tendances de performance des étudiants",
+            "Identification proactive des étudiants à risque via le suivi temps réel",
+            "Amélioration de la prise de décision pour le développement des curricula",
+            "Rationalisation du traitement des données et réduction des erreurs",
+            "Transparence et accessibilité accrues des données de performance",
+            "Base pour des analyses prédictives de réussite et rétention",
+          ]
+        }
+      }
+    },
+    {
+      id: "home-services",
+      title: "Home Services Web Application",
+      category: "fullstack",
+      year: "Not Specified",
+      technologies: [
+        "PHP",
+        "MySQL",
+        "Bootstrap",
+        "MVC Architecture",
+        "Web Development",
+        "Service Booking",
+        "Email Integration",
+      ],
+      github: "https://github.com/Ayuubakb/PHP_MVC_ServicesWebSite.git",
+      images: [
+        {
+          original: "https://i.ibb.co/0G4ZXK3/brico-Email.png",
+          thumbnail: "https://i.ibb.co/0G4ZXK3/brico-Email.png",
+        },
+        {
+          original: "https://i.ibb.co/mDd57X3/ClassD.png",
+          thumbnail: "https://i.ibb.co/mDd57X3/ClassD.png",
+        },
+        {
+          original: "https://i.ibb.co/g4yfnfk/client-Profile.png",
+          thumbnail: "https://i.ibb.co/g4yfnfk/client-Profile.png",
+        },
+        {
+          original: "https://i.ibb.co/dpMXXRT/clSignup.png",
+          thumbnail: "https://i.ibb.co/dpMXXRT/clSignup.png",
+        },
+        {
+          original: "https://i.ibb.co/vJLKspz/commandes.png",
+          thumbnail: "https://i.ibb.co/vJLKspz/commandes.png",
+        },
+        {
+          original: "https://i.ibb.co/1vsJDd0/commentaires.png",
+          thumbnail: "https://i.ibb.co/1vsJDd0/commentaires.png",
+        },
+        {
+          original: "https://i.ibb.co/vL4MVnK/condition.png",
+          thumbnail: "https://i.ibb.co/vL4MVnK/condition.png",
+        },
+        {
+          original: "https://i.ibb.co/Wfy2ZyL/home.png",
+          thumbnail: "https://i.ibb.co/Wfy2ZyL/home.png",
+        },
+        {
+          original: "https://i.ibb.co/d6hx7Tv/interventions.png",
+          thumbnail: "https://i.ibb.co/d6hx7Tv/interventions.png",
+        },
+        {
+          original: "https://i.ibb.co/8d9YQVR/log.png",
+          thumbnail: "https://i.ibb.co/8d9YQVR/log.png",
+        },
+        {
+          original: "https://i.ibb.co/Rp2F61f/modify-Client.png",
+          thumbnail: "https://i.ibb.co/Rp2F61f/modify-Client.png",
+        },
+        {
+          original: "https://i.ibb.co/PFdFpVk/modify-Partenaire.png",
+          thumbnail: "https://i.ibb.co/PFdFpVk/modify-Partenaire.png",
+        },
+        {
+          original: "https://i.ibb.co/c8VBTh2/par-Signup.png",
+          thumbnail: "https://i.ibb.co/c8VBTh2/par-Signup.png",
+        },
+        {
+          original: "https://i.ibb.co/n1y3Tm7/partenaire-Profile.png",
+          thumbnail: "https://i.ibb.co/n1y3Tm7/partenaire-Profile.png",
+        },
+        {
+          original: "https://i.ibb.co/KbkMFBD/sercices.png",
+          thumbnail: "https://i.ibb.co/KbkMFBD/sercices.png",
+        },
+        {
+          original: "https://i.ibb.co/hWf8BgF/service.png",
+          thumbnail: "https://i.ibb.co/hWf8BgF/service.png",
+        },
+        {
+          original: "https://i.ibb.co/HTQm4L6/Tech.png",
+          thumbnail: "https://i.ibb.co/HTQm4L6/Tech.png",
+        },
+        {
+          original: "https://i.ibb.co/pjxZBqY/view-Partenaire.png",
+          thumbnail: "https://i.ibb.co/pjxZBqY/view-Partenaire.png",
+        },
+      ],
+      report: "",
+      content: {
+        en: {
+          categoryLabel: "Fullstack Web Application",
+          description:
+            "Developed a comprehensive web platform using PHP, MySQL, and Bootstrap, built on an MVC architecture. This application efficiently connects clients with a diverse range of home service providers (partners) for services like cleaning and gardening. It offers robust functionalities for both user types, including authentication, service browsing, reservation management, and unique feedback mechanisms to foster trust and accountability.",
+          features: [
+            "Dual User Portals (Client & Service Provider)",
+            "Secure User Authentication & Profile Management for both Clients and Partners",
+            "Service Browsing & Partner Profile Viewing",
+            "Intuitive Reservation & Booking System with Partner Acceptance/Rejection",
+            "Dynamic Rating System for Services, Clients, and Partners",
+            "Advanced Comment System with Conditional Display Logic (mutual comments & waiting period)",
+            "Automated Partner Availability Checks Based on Schedules",
+            "Real-time Email Notifications for Reservation Confirmations (including client details to partners)",
+            "Dashboard for Partners to Manage Services and View Feedback",
+          ],
+          impact: [
+            "Streamlined the process of connecting clients with home service providers",
+            "Enhanced user trust and reliability through a sophisticated rating and comment system",
+            "Improved efficiency in service booking and management for both parties",
+            "Provided a centralized platform for managing home service needs, eliminating manual coordination",
+            "Fostered a transparent and accountable service marketplace",
+            "Demonstrated strong fullstack development skills, complex logic implementation, and database design",
+          ]
+        },
+        fr: {
+          categoryLabel: "Application Web Fullstack",
+          description:
+            "Développement d'une plateforme web complète en PHP, MySQL et Bootstrap, construite sur une architecture MVC. L'application met en relation des clients avec des prestataires de services à domicile (partenaires) pour des services comme le ménage ou le jardinage. Elle propose des fonctionnalités robustes pour les deux types d'utilisateurs : authentification, navigation des services, gestion des réservations et mécanismes de feedback favorisant la confiance et la responsabilité.",
+          features: [
+            "Portails distincts pour Clients et Prestataires",
+            "Authentification sécurisée et gestion des profils pour clients et partenaires",
+            "Navigation des services et consultation des profils des partenaires",
+            "Système de réservation intuitif avec acceptation/refus par le partenaire",
+            "Système de notation dynamique pour services, clients et partenaires",
+            "Système avancé de commentaires avec logique conditionnelle (commentaires mutuels et délai d'attente)",
+            "Vérification automatisée de la disponibilité des partenaires selon les plannings",
+            "Notifications email en temps réel pour les confirmations de réservation (incluant les détails client)",
+            "Tableau de bord partenaires pour gérer les services et consulter les avis",
+          ],
+          impact: [
+            "Simplification de la mise en relation clients-prestataires",
+            "Renforcement de la confiance grâce au système de notation et commentaires",
+            "Amélioration de l'efficacité des réservations et de la gestion côté utilisateurs",
+            "Plateforme centralisée pour les besoins de services à domicile, réduisant la coordination manuelle",
+            "Marché de services plus transparent et responsable",
+            "Démonstration de solides compétences fullstack, logique métier complexe et design de base de données",
+          ]
+        }
+      }
+    },
+  ]), []);
+
+  const t = content[language];
   const projects = useMemo(
-    () => [
-      {
-        title: "Administrative Process Digitalization",
-        category: "fullstack",
-        categoryLabel: "Fullstack Web Application",
-        year: "2024",
-        description:
-          "Created two web platforms using React and Spring Boot to automate the issuance of residence certificates and trade registers, modernizing administrative processes as part of Digital Morocco 2030.",
-        technologies: ["React", "Spring Boot", "Docker", "Microservices"],
-        features: [
-          "Online Application Submission & Tracking",
-          "Digital Document Generation",
-          "User Authentication & Role-Based Access Control",
-          "Integrated Notification System",
-          "Rendezvous Scheduling & Management",
-        ],
-        impact: [
-          "Significant reduction in administrative processing time",
-          "Increased operational efficiency and resource utilization",
-          "Enhanced user satisfaction through streamlined online services",
-          "Achieved notable cost savings by minimizing manual processes",
-          "Improved transparency and reduced bureaucracy in administrative procedures",
-          "Directly contributes to the Digital Morocco 2030 initiative's digitalization goals",
-        ],
-        github: "https://github.com/Ayuubakb/Urbanisme",
-        images: [
-          {
-            original: "https://i.ibb.co/F5pBKXJ/arch.png",
-            thumbnail: "https://i.ibb.co/F5pBKXJ/arch.png",
-          },
-          {
-            original: "https://i.ibb.co/9v72z2k/pic2.jpg",
-            thumbnail: "https://i.ibb.co/9v72z2k/pic2.jpg",
-          },
-          {
-            original: "https://i.ibb.co/Tk1fdmR/pic1.jpg",
-            thumbnail: "https://i.ibb.co/Tk1fdmR/pic1.jpg",
-          },
-        ],
-        report: import.meta.env.BASE_URL + "report.pdf",
-      },
-      {
-        title: "PhD Enrollment System",
-        category: "fullstack",
-        categoryLabel: "Fullstack Web Application",
-        year: "2024",
-        description:
-          "Designed and developed a complete web application for managing PhD enrollments using Angular (frontend) and Spring Boot (backend), ensuring a scalable and efficient infrastructure.",
-        technologies: ["Angular", "Spring Boot", "Docker"],
-        features: [
-          "Online Application Submission & Document Upload",
-          "Real-time Application Status Tracking",
-          "Personalized Student Profile Management",
-          "Comprehensive Application Review & Approval Workflow",
-          "Robust Student Management & Reporting Tools",
-          "Integrated Notification System for Key Updates",
-        ],
-        impact: [
-          "Eliminated paper-based processes, achieving full digitalization of PhD enrollments",
-          "Significantly reduced administrative burden for faculty and staff",
-          "Enabled faster processing and decision-making for applications",
-          "Ensured better data management and integrity for enrollment records",
-          "Improved communication between applicants and administrators",
-          "Increased overall enrollment efficiency and operational transparency",
-        ],
-        github: "https://github.com/MedEZZOUAK/Full-project.git",
-        images: [
-          {
-            original: "https://i.ibb.co/RhxjNzC/Register.jpg",
-            thumbnail: "https://i.ibb.co/RhxjNzC/Register.jpg",
-          },
-          {
-            original:
-              "https://i.ibb.co/qncJK0d/Screenshot-2025-01-15-195844.jpg",
-            thumbnail:
-              "https://i.ibb.co/qncJK0d/Screenshot-2025-01-15-195844.jpg",
-          },
-          {
-            original:
-              "https://i.ibb.co/W5jMyyv/Screenshot-2025-01-15-195916.jpg",
-            thumbnail:
-              "https://i.ibb.co/W5jMyyv/Screenshot-2025-01-15-195916.jpg",
-          },
-        ],
-        report: import.meta.env.BASE_URL + "PhD/GestionDoctorat.pdf",
-      },
-      {
-        title: "AI Cardiovascular Disease Prediction Model",
-        category: "data",
-        categoryLabel: "Data Science & AI",
-        year: "2024",
-        description:
-          "Developed a predictive model for cardiovascular diseases using Python and Jupyter Notebooks. The project involved extensive data preprocessing, feature engineering, and evaluation of various machine learning algorithms to identify optimal predictive performance.",
-        technologies: [
-          "Python",
-          "Jupyter Notebooks",
-          "Machine Learning",
-          "Scikit-learn",
-          "Pandas",
-          "Matplotlib/Seaborn",
-        ], // Added common ML libraries
-        features: [
-          "Comprehensive Data Preprocessing & Cleaning",
-          "Advanced Feature Engineering for Medical Data",
-          "Application of Multiple Classification Algorithms (e.g., Logistic Regression, SVM, Random Forest)",
-          "Model Training, Validation, and Hyperparameter Tuning",
-          "Performance Evaluation using Metrics like Accuracy, Precision, Recall, and F1-Score",
-          "Data Visualization for Exploratory Data Analysis and Model Insights",
-        ],
-        impact: [
-          "Provided a foundational AI model for early risk assessment of cardiovascular diseases",
-          "Demonstrated potential to assist healthcare professionals in proactive patient care",
-          "Contributed to data-driven decision-making in medical diagnostics",
-          "Showcased proficiency in handling and analyzing complex health datasets",
-          "Offered insights into key risk factors for cardiovascular conditions through feature importance analysis",
-        ],
-        github: "https://github.com/MedEZZOUAK/ia_cardio.git",
-        images: [
-          {
-            original: "https://i.ibb.co/5sD0bYc/output.png",
-            thumbnail: "https://i.ibb.co/5sD0bYc/output.png",
-          },
-          {
-            original:
-              "https://i.ibb.co/4SD6b90/Screenshot-2025-01-16-135523.jpg",
-            thumbnail:
-              "https://i.ibb.co/4SD6b90/Screenshot-2025-01-16-135523.jpg",
-          },
-          {
-            original:
-              "https://i.ibb.co/YcW03Mx/Screenshot-2025-01-16-135559.jpg",
-            thumbnail:
-              "https://i.ibb.co/YcW03Mx/Screenshot-2025-01-16-135559.jpg",
-          },
-          {
-            original:
-              "https://i.ibb.co/m58jRTZ/Screenshot-2025-01-16-135621.jpg",
-            thumbnail:
-              "https://i.ibb.co/m58jRTZ/Screenshot-2025-01-16-135621.jpg",
-          },
-          {
-            original:
-              "https://i.ibb.co/Vpctccq/Screenshot-2025-01-16-135646.jpg",
-            thumbnail:
-              "https://i.ibb.co/Vpctccq/Screenshot-2025-01-16-135646.jpg",
-          },
-        ],
-        report: "",
-      },
-      {
-        title: "Academic Performance Analysis System",
-        category: "data",
-        categoryLabel: "Business Intelligence", // Updated label for clarity
-        year: "2024", // Placeholder, please update if needed
-        description:
-          "Designed and implemented a Business Intelligence system for analyzing academic performance, including student attendance and grades. The project involved creating a robust Data Warehouse, developing an automated ETL pipeline using Python and Apache Airflow, and building an interactive dashboard with Power BI to provide insightful analytics.",
-        technologies: [
-          "Business Intelligence",
-          "Data Warehouse",
-          "ETL",
-          "Python",
-          "Apache Airflow",
-          "Power BI",
-          "OLAP",
-          "SQL (for DWH)",
-          "DAX",
-          "OLAP CUB "
-        ], // Added SQL as it's fundamental for DWH
-        features: [
-          "Centralized Data Warehouse for Integrated Academic Data",
-          "Automated ETL Pipeline for Data Extraction, Transformation, and Loading (Python, Apache Airflow)",
-          "Interactive Dashboards for Visualizing Student Grades and Attendance (Power BI)",
-          "Multi-dimensional Analysis Capabilities (OLAP)",
-          "Trend Analysis and Performance Tracking over Time",
-          "Drill-down Capabilities for Granular Academic Insights",
-          "Customizable Reporting for Academic Stakeholders",
-        ],
-        impact: [
-          "Provided academic institutions with data-driven insights into student performance trends",
-          "Enabled proactive identification of at-risk students through real-time attendance and grade monitoring",
-          "Improved decision-making for curriculum development and resource allocation",
-          "Streamlined data processing and reporting, reducing manual effort and errors",
-          "Enhanced transparency and accessibility of academic performance data for educators and administrators",
-          "Laid the groundwork for predictive analytics in academic success and retention",
-        ],
-        github: "https://github.com/MedEZZOUAK/BI_PROJECT_ETL.git",
-        images: [
-          {
-            original: "https://i.ibb.co/yFTtcXG/page1.jpg",
-            thumbnail: "https://i.ibb.co/yFTtcXG/page1.jpg",
-          },
-          {
-            original: "https://i.ibb.co/jMvDjGt/page2.jpg",
-            thumbnail: "https://i.ibb.co/jMvDjGt/page2.jpg",
-          },
-          {
-            original: "https://i.ibb.co/KXcSZ4m/page3.jpg",
-            thumbnail: "https://i.ibb.co/KXcSZ4m/page3.jpg",
-          },
-          {
-            original: "https://i.ibb.co/kycRb9m/page4.jpg",
-            thumbnail: "https://i.ibb.co/kycRb9m/page4.jpg",
-          },
-          {
-            original: "https://i.ibb.co/py4BG9g/page5.jpg",
-            thumbnail: "https://i.ibb.co/py4BG9g/page5.jpg",
-          },
-          {
-            original:
-              "https://i.ibb.co/KbBqkZM/Screenshot-2025-01-16-145535.jpg",
-            thumbnail:
-              "https://i.ibb.co/KbBqkZM/Screenshot-2025-01-16-145535.jpg",
-          },
-        ],
-        report: import.meta.env.BASE_URL + "Bi/Rapport-MiniProjetBI_GRP8.pdf",
-      },
-      {
-        title: "Home Services Web Application",
-        category: "fullstack",
-        categoryLabel: "Fullstack Web Application", // Inferred label
-        year: "Not Specified", // Placeholder, please update
-        description:
-          "Developed a comprehensive web platform using PHP, MySQL, and Bootstrap, built on an MVC architecture. This application efficiently connects clients with a diverse range of home service providers (partners) for services like cleaning and gardening. It offers robust functionalities for both user types, including authentication, service browsing, reservation management, and unique feedback mechanisms to foster trust and accountability.",
-        technologies: [
-          "PHP",
-          "MySQL",
-          "Bootstrap",
-          "MVC Architecture",
-          "Web Development",
-          "Service Booking",
-          "Email Integration", // Added based on description
-        ],
-        features: [
-          "Dual User Portals (Client & Service Provider)",
-          "Secure User Authentication & Profile Management for both Clients and Partners",
-          "Service Browsing & Partner Profile Viewing",
-          "Intuitive Reservation & Booking System with Partner Acceptance/Rejection",
-          "Dynamic Rating System for Services, Clients, and Partners",
-          "Advanced Comment System with Conditional Display Logic (mutual comments & waiting period)",
-          "Automated Partner Availability Checks Based on Schedules",
-          "Real-time Email Notifications for Reservation Confirmations (including client details to partners)",
-          "Dashboard for Partners to Manage Services and View Feedback",
-        ],
-        impact: [
-          "Streamlined the process of connecting clients with home service providers",
-          "Enhanced user trust and reliability through a sophisticated rating and comment system",
-          "Improved efficiency in service booking and management for both parties",
-          "Provided a centralized platform for managing home service needs, eliminating manual coordination",
-          "Fostered a transparent and accountable service marketplace",
-          "Demonstrated strong fullstack development skills, complex logic implementation, and database design",
-        ],
-        github: "https://github.com/Ayuubakb/PHP_MVC_ServicesWebSite.git",
-        images: [
-          {
-            original: "https://i.ibb.co/0G4ZXK3/brico-Email.png",
-            thumbnail: "https://i.ibb.co/0G4ZXK3/brico-Email.png",
-          },
-          {
-            original: "https://i.ibb.co/mDd57X3/ClassD.png",
-            thumbnail: "https://i.ibb.co/mDd57X3/ClassD.png",
-          },
-          {
-            original: "https://i.ibb.co/g4yfnfk/client-Profile.png",
-            thumbnail: "https://i.ibb.co/g4yfnfk/client-Profile.png",
-          },
-          {
-            original: "https://i.ibb.co/dpMXXRT/clSignup.png",
-            thumbnail: "https://i.ibb.co/dpMXXRT/clSignup.png",
-          },
-          {
-            original: "https://i.ibb.co/vJLKspz/commandes.png",
-            thumbnail: "https://i.ibb.co/vJLKspz/commandes.png",
-          },
-          {
-            original: "https://i.ibb.co/1vsJDd0/commentaires.png",
-            thumbnail: "https://i.ibb.co/1vsJDd0/commentaires.png",
-          },
-          {
-            original: "https://i.ibb.co/vL4MVnK/condition.png",
-            thumbnail: "https://i.ibb.co/vL4MVnK/condition.png",
-          },
-          {
-            original: "https://i.ibb.co/Wfy2ZyL/home.png",
-            thumbnail: "https://i.ibb.co/Wfy2ZyL/home.png",
-          },
-          {
-            original: "https://i.ibb.co/d6hx7Tv/interventions.png",
-            thumbnail: "https://i.ibb.co/d6hx7Tv/interventions.png",
-          },
-          {
-            original: "https://i.ibb.co/8d9YQVR/log.png",
-            thumbnail: "https://i.ibb.co/8d9YQVR/log.png",
-          },
-          {
-            original: "https://i.ibb.co/Rp2F61f/modify-Client.png",
-            thumbnail: "https://i.ibb.co/Rp2F61f/modify-Client.png",
-          },
-          {
-            original: "https://i.ibb.co/PFdFpVk/modify-Partenaire.png",
-            thumbnail: "https://i.ibb.co/PFdFpVk/modify-Partenaire.png",
-          },
-          {
-            original: "https://i.ibb.co/c8VBTh2/par-Signup.png",
-            thumbnail: "https://i.ibb.co/c8VBTh2/par-Signup.png",
-          },
-          {
-            original: "https://i.ibb.co/n1y3Tm7/partenaire-Profile.png",
-            thumbnail: "https://i.ibb.co/n1y3Tm7/partenaire-Profile.png",
-          },
-          {
-            original: "https://i.ibb.co/KbkMFBD/sercices.png",
-            thumbnail: "https://i.ibb.co/KbkMFBD/sercices.png",
-          },
-          {
-            original: "https://i.ibb.co/hWf8BgF/service.png",
-            thumbnail: "https://i.ibb.co/hWf8BgF/service.png",
-          },
-          {
-            original: "https://i.ibb.co/HTQm4L6/Tech.png",
-            thumbnail: "https://i.ibb.co/HTQm4L6/Tech.png",
-          },
-          {
-            original: "https://i.ibb.co/pjxZBqY/view-Partenaire.png",
-            thumbnail: "https://i.ibb.co/pjxZBqY/view-Partenaire.png",
-          },
-        ],
-        report: "",
-      },
-      // The commented-out Desktop Chat and File Sharing Application is skipped as requested
-    ],
-    []
+    () => baseProjects.map((project) => ({ ...project, ...project.content[language] })),
+    [baseProjects, language]
   );
 
   const filteredProjects = projects.filter(
@@ -358,10 +534,10 @@ function Projects() {
   );
 
   const tabs = [
-    { id: "all", label: "All Projects", icon: <FaCode /> },
-    { id: "ai", label: "AI & Computer Vision", icon: <FaBrain /> },
-    { id: "data", label: "Data Engineering", icon: <FaDatabase /> },
-    { id: "fullstack", label: "Full Stack", icon: <FaCode /> },
+    { id: "all", label: t.tabs.all, icon: <FaCode /> },
+    { id: "ai", label: t.tabs.ai, icon: <FaBrain /> },
+    { id: "data", label: t.tabs.data, icon: <FaDatabase /> },
+    { id: "fullstack", label: t.tabs.fullstack, icon: <FaCode /> },
   ];
 
   return (
@@ -378,7 +554,7 @@ function Projects() {
           transition={{ duration: 0.8 }}
           className="text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 dark:from-blue-400 dark:via-purple-400 dark:to-blue-400 bg-clip-text text-transparent"
         >
-          Featured Projects
+          {t.title}
         </motion.h2>
 
         {/* Tab Navigation */}
@@ -448,7 +624,7 @@ function Projects() {
 
                   <div className="mb-6">
                     <h4 className="text-lg font-semibold text-slate-800 dark:text-gray-200 mb-3">
-                      Technologies:
+                      {t.labels.technologies}
                     </h4>
                     <div className="flex flex-wrap gap-2">
                       {project.technologies.map((tech, idx) => (
@@ -465,7 +641,7 @@ function Projects() {
                   {project.features && (
                     <div className="mb-6">
                       <h4 className="text-lg font-semibold text-slate-800 dark:text-gray-200 mb-3">
-                        Key Features:
+                        {t.labels.features}
                       </h4>
                       <ul className="space-y-2">
                         {project.features.slice(0, 3).map((feature, idx) => (
@@ -483,7 +659,7 @@ function Projects() {
                   {project.impact && (
                     <div className="mb-6">
                       <h4 className="text-lg font-semibold text-slate-800 dark:text-gray-200 mb-3">
-                        Impact:
+                        {t.labels.impact}
                       </h4>
                       <ul className="space-y-2">
                         {project.impact.slice(0, 2).map((impact, idx) => (
@@ -507,7 +683,7 @@ function Projects() {
                         className="flex items-center space-x-2 px-4 py-2 bg-gray-800 dark:bg-gray-700 text-white rounded-lg hover:bg-gray-700 dark:hover:bg-gray-600 transition-all duration-300"
                       >
                         <FaGithub />
-                        <span>View Code</span>
+                        <span>{t.actions.viewCode}</span>
                       </a>
                     )}
                     {project.images && project.images.length > 0 && (
@@ -519,7 +695,7 @@ function Projects() {
                         className="flex items-center space-x-2 px-4 py-2 bg-blue-600 dark:bg-blue-500 text-white rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600 transition-all duration-300"
                       >
                         <FaImages />
-                        <span>View Images</span>
+                        <span>{t.actions.viewImages}</span>
                       </button>
                     )}
                     {project.report && (
@@ -530,7 +706,7 @@ function Projects() {
                         className="flex items-center space-x-2 px-4 py-2 bg-green-600 dark:bg-green-500 text-white rounded-lg hover:bg-green-700 dark:hover:bg-green-600 transition-all duration-300"
                       >
                         <FaFileDownload />
-                        <span>View Report</span>
+                        <span>{t.actions.viewReport}</span>
                       </a>
                     )}
                   </div>
@@ -582,5 +758,11 @@ const Modal = ({ children, isOpen, onClose }) => (
     <div className="relative z-10 max-h-full overflow-auto">{children}</div>
   </div>
 );
+
+Modal.propTypes = {
+  children: PropTypes.node.isRequired,
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired
+};
 
 export default Projects;
