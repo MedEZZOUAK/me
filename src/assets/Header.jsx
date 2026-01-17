@@ -180,7 +180,7 @@ function Header() {
               <div 
                 ref={imageRef}
                 className="relative w-40 h-40 md:w-48 md:h-48 mx-auto mb-8"
-                aria-label="Profile picture of Mohammed Ez-Zouak"
+                aria-label="Profile picture of Mohammed EZ-ZOUAK"
               >
                 {imageLoading && (
                   <div className="absolute inset-0 bg-gray-200 dark:bg-dark-surface rounded-full animate-pulse flex items-center justify-center">
@@ -219,7 +219,7 @@ function Header() {
               className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6"
             >
               <span className="bg-gradient-to-r from-blue-700 via-purple-600 to-indigo-700 dark:from-blue-400 dark:via-purple-400 dark:to-blue-400 bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient drop-shadow-sm">
-                Mohammed Ez-Zouak
+                Mohammed EZ-ZOUAK
               </span>
             </motion.h1>
 
