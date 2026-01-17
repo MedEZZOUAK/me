@@ -1,4 +1,5 @@
 import { Suspense } from 'react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import About from './assets/About'
 import Contact from './assets/Contact'
 import Header from './assets/Header'
@@ -64,7 +65,7 @@ function App() {
         </ErrorBoundary>
       </main>
       
-  
+      <SpeedInsights />
     </>
   )
 }
