@@ -1,5 +1,6 @@
 import { Suspense } from 'react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
+import { Analytics } from '@vercel/analytics/react';
 import About from './assets/About'
 import Contact from './assets/Contact'
 import Header from './assets/Header'
@@ -66,6 +67,7 @@ function App() {
       </main>
       
       <SpeedInsights />
+      <Analytics />
     </>
   )
 }
