@@ -119,9 +119,13 @@ function Header() {
             className="md:hidden border-t-2 border-gray-300 dark:border-dark-border bg-white/98 dark:bg-dark-card/95 backdrop-blur-md shadow-light-lg"
             role="menu"
           >
-            <div className="container mx-auto px-6 py-4 space-y-2">
+            <div className="container mx-auto px-6 py-4 space-y-2 flex flex-col">
               {navItems[language].map((item, index) => (
-                <NavLink key={index} href={`#${item.toLowerCase().replace(/\s+/g, '').replace('àpropos', 'about').replace('compétences', 'skills').replace('expérience', 'experience').replace('projets', 'projects').replace('formation', 'education').replace('contact', 'contact')}`}>
+                <NavLink
+                  key={index}
+                  href={`#${item.toLowerCase().replace(/\s+/g, '').replace('àpropos', 'about').replace('compétences', 'skills').replace('expérience', 'experience').replace('projets', 'projects').replace('formation', 'education').replace('contact', 'contact')}`}
+                  onClick={() => setIsMenuOpen(false)}
+                >
                   {item}
                 </NavLink>
               ))}
@@ -309,9 +313,10 @@ function Header() {
   );
 }
 
-const NavLink = ({ href, children }) => (
+const NavLink = ({ href, children, onClick }) => (
   <a
     href={href}
+    onClick={onClick}
     className="relative text-sm font-semibold text-slate-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 py-2 group"
     role="menuitem"
   >
@@ -351,7 +356,8 @@ const CTAButton = ({ href, children, secondary, ...props }) => (
 
 NavLink.propTypes = {
   href: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
+  onClick: PropTypes.func
 };
 
 SocialLink.propTypes = {

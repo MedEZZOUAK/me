@@ -3,9 +3,9 @@ import { Helmet } from 'react-helmet-async';
 // EDIT THESE VARIABLES
 const meta = {
   title: "Mohammed Ez-Zouak | Full Stack & Data Engineer",
-  description: "Portfolio of Mohammed Ez-Zouak, a Full Stack & Data Engineer specializing in scalable web apps, data pipelines, and AI-driven solutions.",
-  url: "https://mezzouak.tech",
-  image: "https://mezzouak.tech/og-image.jpg",
+  description: "Portfolio of Mohammed Ez-Zouak, State Engineer in Computer Science and Full Stack & Data Developer based in Casablanca.",
+  url: "https://medezzouak.github.io/me/",
+  image: "https://medezzouak.github.io/me/og-image.jpg",
   twitterUsername: "@MedEZZOUAK"
 };
 
@@ -15,6 +15,8 @@ const structuredData = {
   "name": "Mohammed Ez-Zouak",
   "url": meta.url,
   "jobTitle": "Full Stack & Data Engineer",
+  "description": meta.description,
+  "image": meta.image,
   "sameAs": [
     "https://www.linkedin.com/in/mohammed-ez-zouak",
     "https://github.com/MedEZZOUAK",

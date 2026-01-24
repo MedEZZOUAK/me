@@ -1,6 +1,4 @@
-import { Suspense } from 'react';
-import { SpeedInsights } from '@vercel/speed-insights/react';
-import { Analytics } from '@vercel/analytics/react';
+import { Suspense, lazy } from 'react';
 import About from './assets/About'
 import Contact from './assets/Contact'
 import Header from './assets/Header'
@@ -12,6 +10,14 @@ import SEO from './components/SEO'
 
 // // Lazy load components for better performance
 // const LazyProjects = lazy(() => import('./assets/Projects'))
+
+const isProd = import.meta.env.PROD;
+const VercelSpeedInsights = isProd
+  ? lazy(() => import('@vercel/speed-insights/react').then((mod) => ({ default: mod.SpeedInsights })))
+  : null;
+const VercelAnalytics = isProd
+  ? lazy(() => import('@vercel/analytics/react').then((mod) => ({ default: mod.Analytics })))
+  : null;
 
 // Error Boundary Component
 const ErrorBoundary = ({ children, fallback }) => {
@@ -66,8 +72,16 @@ function App() {
         </ErrorBoundary>
       </main>
       
-      <SpeedInsights />
-      <Analytics />
+      {isProd && VercelSpeedInsights && (
+        <Suspense fallback={null}>
+          <VercelSpeedInsights />
+        </Suspense>
+      )}
+      {isProd && VercelAnalytics && (
+        <Suspense fallback={null}>
+          <VercelAnalytics />
+        </Suspense>
+      )}
     </>
   )
 }
