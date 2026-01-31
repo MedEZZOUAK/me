@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { FaGithub, FaLinkedin, FaEnvelope, FaBars, FaTimes, FaMoon, FaSun, FaDownload, FaArrowDown } from "react-icons/fa";
+import { track } from "@vercel/analytics";
 import { useImageLazyLoad } from "../hooks/useLazyLoad";
 import { useOptimizedAnimation } from "../hooks/useOptimizedAnimation";
 import { useTheme } from "../contexts/ThemeContext";
@@ -40,8 +41,19 @@ function Header() {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   const navItems = {
-    en: ['About', 'Skills', 'Experience', 'Projects', 'Education', 'Contact'],
-    fr: ['À Propos', 'Compétences', 'Expérience', 'Projets', 'Formation', 'Contact']
+    en: ['About', 'Skills', 'Experience', 'Projects', 'CV', 'Education', 'Contact'],
+    fr: ['À Propos', 'Compétences', 'Expérience', 'Projets', 'CV', 'Formation', 'Contact']
+  };
+  const baseUrl = import.meta.env.BASE_URL || '/';
+  const isEnglish = language === 'en';
+  const cvHref = isEnglish
+    ? `${baseUrl}resume.pdf`
+    : `${baseUrl}cv_frensh.pdf`;
+  const cvDownloadName = isEnglish
+    ? 'Mohammed_Ez-Zouak_CV_EN.pdf'
+    : 'Mohammed_Ez-Zouak_CV_FR.pdf';
+  const trackCvDownload = () => {
+    track('Download CV', { language });
   };
 
   return (
@@ -261,7 +273,7 @@ function Header() {
               <CTAButton href="#contact" secondary>
                 {language === 'en' ? 'Get In Touch' : 'Me Contacter'}
               </CTAButton>
-              <CTAButton href="/MOHAMMED-EZ-ZOUAK-Resume.pdf" secondary target="_blank" rel="noopener noreferrer">
+              <CTAButton href={cvHref} download={cvDownloadName} onClick={trackCvDownload} secondary>
                 <FaDownload className="mr-2" />
                 {language === 'en' ? 'Download CV' : 'Télécharger CV'}
               </CTAButton>

@@ -3,6 +3,7 @@ import About from './assets/About'
 import Contact from './assets/Contact'
 import Header from './assets/Header'
 import Projects from './assets/Projects'
+import CV from './assets/CV'
 import Skills from './assets/Skills'
 import Experience from './assets/Experience'
 import Education from './assets/Education'
@@ -63,6 +64,10 @@ function App() {
           </Suspense>
         </ErrorBoundary>
         
+        <ErrorBoundary>
+          <CV></CV>
+        </ErrorBoundary>
+
         <ErrorBoundary>
           <Education></Education>
         </ErrorBoundary>

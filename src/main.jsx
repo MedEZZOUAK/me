@@ -33,10 +33,12 @@ if ('serviceWorker' in navigator) {
 
 // Preload critical resources
 const preloadCriticalResources = () => {
+  const baseUrl = import.meta.env.BASE_URL || '/';
   const criticalResources = [
-    '/profil.JPG',
-    '/MOHAMMED-EZ-ZOUAK-Resume.pdf',
-    '/lear-demo.mp4'
+    `${baseUrl}profil.JPG`,
+    `${baseUrl}resume.pdf`,
+    `${baseUrl}cv_frensh.pdf`,
+    `${baseUrl}lear-demo.mp4`
   ];
 
   criticalResources.forEach(resource => {

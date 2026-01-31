@@ -1,11 +1,13 @@
 const CACHE_NAME = 'portfolio-v1';
+const baseUrl = self.registration?.scope || self.location.origin + '/';
 const urlsToCache = [
   '/',
   '/index.html',
   '/src/main.jsx',
   '/src/App.jsx',
   '/profil.JPG',
-  '/resume.pdf',
+  new URL('resume.pdf', baseUrl).pathname,
+  new URL('cv_frensh.pdf', baseUrl).pathname,
   '/lear-demo.mp4',
   '/favicon.ico',
   '/apple-touch-icon.png',

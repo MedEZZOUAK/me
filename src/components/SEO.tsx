@@ -9,8 +9,7 @@ const meta = {
   twitterUsername: "@MedEZZOUAK"
 };
 
-const structuredData = {
-  "@context": "https://schema.org",
+const personStructuredData = {
   "@type": "Person",
   "name": "Mohammed Ez-Zouak",
   "url": meta.url,
@@ -23,6 +22,23 @@ const structuredData = {
     "https://twitter.com/MedEZZOUAK"
   ]
 };
+
+const websiteStructuredData = {
+  "@type": "WebSite",
+  "name": meta.title,
+  "url": meta.url,
+  "inLanguage": ["en", "fr"],
+  "author": {
+    "@type": "Person",
+    "name": "Mohammed Ez-Zouak"
+  }
+};
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [personStructuredData, websiteStructuredData]
+};
+
 
 export default function SEO() {
   return (
@@ -53,6 +69,7 @@ export default function SEO() {
       <script type="application/ld+json">
         {JSON.stringify(structuredData)}
       </script>
+
     </Helmet>
   );
 }

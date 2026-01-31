@@ -67,8 +67,9 @@
     </script>
     
     <!-- Preload critical resources -->
-    <link rel="preload" href="/profil.JPG" as="image" />
-    <link rel="preload" href="/resume.pdf" as="document" />
+    <link rel="preload" href="%BASE_URL%profil.JPG" as="image" />
+    <link rel="preload" href="%BASE_URL%resume.pdf" as="fetch" type="application/pdf" crossorigin="anonymous" />
+    <link rel="preload" href="%BASE_URL%cv_frensh.pdf" as="fetch" type="application/pdf" crossorigin="anonymous" />
     
     <!-- Performance optimization -->
     <link rel="dns-prefetch" href="//i.ibb.co" />
