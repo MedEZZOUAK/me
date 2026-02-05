@@ -1,0 +1,23 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "headers": [
+    {
+      "source": "/resume.pdf",
+      "headers": [
+        {
+          "key": "Content-Disposition",
+          "value": "inline; filename=\"Mohammed_Ez-Zouak_CV_EN.pdf\""
+        }
+      ]
+    },
+    {
+      "source": "/cv_frensh.pdf",
+      "headers": [
+        {
+          "key": "Content-Disposition",
+          "value": "inline; filename=\"Mohammed_Ez-Zouak_CV_FR.pdf\""
+        }
+      ]
+    }
+  ]
+}
