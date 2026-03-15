@@ -49,11 +49,11 @@ function Header() {
   const baseUrl = BASE_URL;
   const isEnglish = language === 'en';
   const cvHref = isEnglish
-    ? `${baseUrl}resume.pdf`
-    : `${baseUrl}cv_french.pdf`;
+    ? `${baseUrl}Mohammed_Ez-Zouak_CV_EN.pdf`
+    : `${baseUrl}Mohammed_Ez-Zouak_CV.pdf`;
   const cvDownloadName = isEnglish
     ? 'Mohammed_Ez-Zouak_CV_EN.pdf'
-    : 'Mohammed_Ez-Zouak_CV_FR.pdf';
+    : 'Mohammed_Ez-Zouak_CV.pdf';
   const trackCvDownload = () => {
     track('Download CV', { language });
   };

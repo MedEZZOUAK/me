@@ -73,8 +73,8 @@ import { BASE_URL } from './config/baseUrl';
 const preloadCriticalResources = () => {
   const criticalResources = [
     `${BASE_URL}profil.JPG`,
-    `${BASE_URL}resume.pdf`,
-    `${BASE_URL}cv_french.pdf`,
+    `${BASE_URL}Mohammed_Ez-Zouak_CV_EN.pdf`,
+    `${BASE_URL}Mohammed_Ez-Zouak_CV.pdf`,
     `${BASE_URL}lear-demo.mp4`
   ];
 

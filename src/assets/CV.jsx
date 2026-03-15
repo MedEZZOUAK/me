@@ -11,14 +11,14 @@ function CV() {
     en: {
       label: 'English',
       title: 'Resume',
-      href: `${baseUrl}resume.pdf`,
+      href: `${baseUrl}Mohammed_Ez-Zouak_CV_EN.pdf`,
       download: 'Mohammed_Ez-Zouak_CV_EN.pdf'
     },
     fr: {
       label: 'Français',
       title: 'CV',
-      href: `${baseUrl}cv_french.pdf`,
-      download: 'Mohammed_Ez-Zouak_CV_FR.pdf'
+      href: `${baseUrl}Mohammed_Ez-Zouak_CV.pdf`,
+      download: 'Mohammed_Ez-Zouak_CV.pdf'
     }
   };
   const activeCv = cvConfig[language];
