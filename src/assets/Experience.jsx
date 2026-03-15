@@ -4,6 +4,8 @@ import { FaBriefcase, FaCalendarAlt, FaCheckCircle, FaPlay, FaTimes } from "reac
 import { useLazyLoad } from "../hooks/useLazyLoad";
 import { useOptimizedAnimation } from "../hooks/useOptimizedAnimation";
 import { useLanguage } from "../contexts/LanguageContext";
+import CountUp from "react-countup";
+import { useInView } from "react-intersection-observer";
 
 function Experience() {
   const [showVideo, setShowVideo] = useState(false);
@@ -12,6 +14,10 @@ function Experience() {
   const { elementRef: videoRef, isVisible: videoVisible } = useLazyLoad({
     threshold: 0.1,
     rootMargin: '100px'
+  });
+  const { ref: metricsRef, inView: metricsInView } = useInView({
+    triggerOnce: true,
+    threshold: 0.3
   });
 
   const content = {
@@ -243,7 +249,7 @@ function Experience() {
                     viewport={{ once: true }}
                     variants={optimizedVariants}
                     transition={{ delay: 0.3 }}
-                    className="mt-8 p-8 bg-gradient-to-br from-blue-50 via-purple-50 to-indigo-50 dark:from-blue-900/20 dark:via-purple-900/20 dark:to-indigo-900/20 rounded-2xl border border-blue-200 dark:border-blue-800 shadow-lg"
+                    className="mt-8 p-8 bg-gradient-to-br from-blue-50 via-purple-50 to-indigo-50 dark:from-blue-900/20 dark:via-purple-900/20 dark:to-indigo-900/20 rounded-2xl border border-blue-200 dark:border-blue-800 shadow-lg space-y-6"
                   >
                     <div className="flex items-center justify-between mb-4">
                       <div>
@@ -278,6 +284,30 @@ function Experience() {
                           {t.realtimeProcessing}
                         </span>
                       </div>
+                    </div>
+
+                    <div
+                      ref={metricsRef}
+                      className="grid grid-cols-1 sm:grid-cols-3 gap-4"
+                    >
+                      <MetricCard
+                        label={language === 'en' ? "Detection accuracy" : "Précision de détection"}
+                        suffix="%"
+                        end={98.7}
+                        inView={metricsInView}
+                      />
+                      <MetricCard
+                        label={language === 'en' ? "Avg. inference time" : "Temps d'inférence moyen"}
+                        suffix=" ms"
+                        end={45}
+                        inView={metricsInView}
+                      />
+                      <MetricCard
+                        label={language === 'en' ? "Production uptime" : "Disponibilité en production"}
+                        suffix="%"
+                        end={99.5}
+                        inView={metricsInView}
+                      />
                     </div>
                   </motion.div>
                 )}
@@ -390,3 +420,14 @@ function Experience() {
 }
 
 export default Experience;
+
+const MetricCard = ({ label, suffix, end, inView }) => (
+  <div className="bg-white/80 dark:bg-dark-card/80 border border-blue-200 dark:border-blue-800 rounded-xl p-4 shadow-sm flex flex-col items-center justify-center">
+    <div className="text-2xl md:text-3xl font-extrabold text-blue-700 dark:text-blue-400">
+      {inView ? <CountUp end={end} duration={2} decimals={suffix.trim() === '%' ? 1 : 0} suffix={suffix} /> : `0${suffix}`}
+    </div>
+    <p className="mt-1 text-xs md:text-sm text-slate-700 dark:text-gray-300 text-center">
+      {label}
+    </p>
+  </div>
+);

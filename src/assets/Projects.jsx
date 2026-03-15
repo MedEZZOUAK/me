@@ -15,7 +15,6 @@ import PropTypes from "prop-types";
 import { useLanguage } from "../contexts/LanguageContext";
 
 function Projects() {
-  const [activeTab, setActiveTab] = useState("all");
   const [selectedProject, setSelectedProject] = useState(null);
   const [showGallery, setShowGallery] = useState(false);
   const { language } = useLanguage();
@@ -529,16 +528,7 @@ function Projects() {
     [baseProjects, language]
   );
 
-  const filteredProjects = projects.filter(
-    (project) => activeTab === "all" || project.category === activeTab
-  );
-
-  const tabs = [
-    { id: "all", label: t.tabs.all, icon: <FaCode /> },
-    { id: "ai", label: t.tabs.ai, icon: <FaBrain /> },
-    { id: "data", label: t.tabs.data, icon: <FaDatabase /> },
-    { id: "fullstack", label: t.tabs.fullstack, icon: <FaCode /> },
-  ];
+  const featuredProjects = projects.slice(0, 3);
 
   return (
     <section
@@ -557,33 +547,10 @@ function Projects() {
           {t.title}
         </motion.h2>
 
-        {/* Tab Navigation */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="flex flex-wrap justify-center gap-4 mb-12"
-        >
-          {tabs.map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              className={`flex items-center space-x-2 px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
-                activeTab === tab.id
-                  ? "bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-500 dark:to-purple-500 text-white shadow-lg"
-                  : "bg-white dark:bg-dark-card backdrop-blur-sm border-2 border-gray-300 dark:border-dark-border text-slate-700 dark:text-gray-300 hover:bg-slate-50 dark:hover:bg-dark-surface hover:shadow-light-lg dark:hover:shadow-md shadow-light-md dark:shadow-md"
-              }`}
-            >
-              {tab.icon}
-              <span>{tab.label}</span>
-            </button>
-          ))}
-        </motion.div>
-
         {/* Projects Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <AnimatePresence mode="wait">
-            {filteredProjects.map((project, index) => (
+            {featuredProjects.map((project, index) => (
               <motion.div
                 key={project.title}
                 initial={{ opacity: 0, y: 50 }}

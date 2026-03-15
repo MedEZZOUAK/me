@@ -1,10 +1,11 @@
 import { FaDownload, FaLanguage } from "react-icons/fa";
 import { track } from "@vercel/analytics";
 import { useLanguage } from "../contexts/LanguageContext";
+import { BASE_URL } from "../config/baseUrl";
 
 function CV() {
   const { language, toggleLanguage } = useLanguage();
-  const baseUrl = import.meta.env.BASE_URL || '/';
+  const baseUrl = BASE_URL;
   const isEnglish = language === 'en';
   const cvConfig = {
     en: {
@@ -16,7 +17,7 @@ function CV() {
     fr: {
       label: 'Français',
       title: 'CV',
-      href: `${baseUrl}cv_frensh.pdf`,
+      href: `${baseUrl}cv_french.pdf`,
       download: 'Mohammed_Ez-Zouak_CV_FR.pdf'
     }
   };

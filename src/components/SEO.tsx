@@ -1,12 +1,14 @@
 import { Helmet } from 'react-helmet-async';
+import { BASE_URL } from '../config/baseUrl';
 
 // EDIT THESE VARIABLES
 const meta = {
   title: "Mohammed Ez-Zouak | Full Stack & Data Engineer",
-  description: "Portfolio of Mohammed Ez-Zouak, State Engineer in Computer Science and Full Stack & Data Developer based in Casablanca.",
-  url: "https://medezzouak.github.io/me/",
-  image: "https://medezzouak.github.io/me/og-image.jpg",
-  twitterUsername: "@MedEZZOUAK"
+  description:
+    "Portfolio of Mohammed Ez-Zouak, State Engineer in Computer Science and Full Stack & Data Developer based in Casablanca.",
+  url: BASE_URL,
+  image: `${BASE_URL}og-image.jpg`,
+  twitterUsername: "@MedEZZOUAK",
 };
 
 const personStructuredData = {

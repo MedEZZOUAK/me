@@ -7,6 +7,8 @@ import { useImageLazyLoad } from "../hooks/useLazyLoad";
 import { useOptimizedAnimation } from "../hooks/useOptimizedAnimation";
 import { useTheme } from "../contexts/ThemeContext";
 import { useLanguage } from "../contexts/LanguageContext";
+import { BASE_URL } from "../config/baseUrl";
+import { TypeAnimation } from "react-type-animation";
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -18,7 +20,7 @@ function Header() {
   const headerBlur = useTransform(scrollY, [0, 100], [0, 10]);
 
   const { elementRef: imageRef, imageSrc, imageLoading, imageError } = useImageLazyLoad(
-    import.meta.env.BASE_URL + 'profil.JPG',
+    BASE_URL + 'profil.JPG',
     'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjU2IiBoZWlnaHQ9IjI1NiIgdmlld0JveD0iMCAwIDI1NiAyNTYiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyNTYiIGhlaWdodD0iMjU2IiBmaWxsPSIjRjNGNEY2Ii8+CjxjaXJjbGUgY3g9IjEyOCIgY3k9IjEwMCIgcj0iMzIiIGZpbGw9IiM5Q0EzQUYiLz4KPHBhdGggZD0iTTQ4IDE4MEM0OCAxNTUuNDYgNzUuNDYgMTI4IDExMiAxMjhIMTQ0QzE4MC41NCAxMjggMjA4IDE1NS40NiAyMDggMTkyVjIwOEMyMDggMjE5LjA0NiAxOTkuMDQ2IDIyOCAxODggMjI4SDY4QzU2Ljk1NCAyMjggNDggMjE5LjA0NiA0OCAyMDhWMTgwWiIgZmlsbD0iIzlDQTNBRiIvPgo8L3N2Zz4K'
   );
   const { optimizedVariants, scaleVariants, prefersReducedMotion } = useOptimizedAnimation();
@@ -41,14 +43,14 @@ function Header() {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   const navItems = {
-    en: ['About', 'Skills', 'Experience', 'Projects', 'CV', 'Education', 'Contact'],
-    fr: ['À Propos', 'Compétences', 'Expérience', 'Projets', 'CV', 'Formation', 'Contact']
+    en: ['About', 'Experience', 'Projects', 'Skills', 'Contact'],
+    fr: ['À Propos', 'Expérience', 'Projets', 'Compétences', 'Contact']
   };
-  const baseUrl = import.meta.env.BASE_URL || '/';
+  const baseUrl = BASE_URL;
   const isEnglish = language === 'en';
   const cvHref = isEnglish
     ? `${baseUrl}resume.pdf`
-    : `${baseUrl}cv_frensh.pdf`;
+    : `${baseUrl}cv_french.pdf`;
   const cvDownloadName = isEnglish
     ? 'Mohammed_Ez-Zouak_CV_EN.pdf'
     : 'Mohammed_Ez-Zouak_CV_FR.pdf';
@@ -232,7 +234,7 @@ function Header() {
               initial="hidden"
               animate="visible"
               variants={optimizedVariants}
-              className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6"
+              className="text-5xl md:text-6xl lg:text-7xl font-bold mb-4"
             >
               <span className="bg-gradient-to-r from-blue-700 via-purple-600 to-indigo-700 dark:from-blue-400 dark:via-purple-400 dark:to-blue-400 bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient drop-shadow-sm">
                 Mohammed EZ-ZOUAK
@@ -246,6 +248,36 @@ function Header() {
               transition={{ delay: 0.2 }}
               className="space-y-4 mb-12"
             >
+              <p className="text-xl md:text-2xl text-slate-700 dark:text-gray-200 font-semibold">
+                <TypeAnimation
+                  sequence={
+                    language === 'en'
+                      ? [
+                          "Full Stack Developer",
+                          2000,
+                          "Data & Cloud Engineer",
+                          2000,
+                          "Computer Vision Engineer",
+                          2000,
+                          "Industrial AI Engineer",
+                          2000
+                        ]
+                      : [
+                          "Développeur Full Stack",
+                          2000,
+                          "Ingénieur Data & Cloud",
+                          2000,
+                          "Ingénieur Vision par Ordinateur",
+                          2000,
+                          "Ingénieur IA Industrielle",
+                          2000
+                        ]
+                  }
+                  wrapper="span"
+                  speed={40}
+                  repeat={Infinity}
+                />
+              </p>
               <p className="text-2xl md:text-3xl text-slate-800 dark:text-gray-300 font-semibold">
                 {language === 'en' 
                   ? "State Engineer in Computer Science | Full Stack & Data Developer"

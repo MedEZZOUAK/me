@@ -7,7 +7,7 @@ const urlsToCache = [
   '/src/App.jsx',
   '/profil.JPG',
   new URL('resume.pdf', baseUrl).pathname,
-  new URL('cv_frensh.pdf', baseUrl).pathname,
+  new URL('cv_french.pdf', baseUrl).pathname,
   '/lear-demo.mp4',
   '/favicon.ico',
   '/apple-touch-icon.png',
