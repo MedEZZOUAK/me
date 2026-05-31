@@ -8,37 +8,37 @@ export default {
   theme: {
     extend: {
       colors: {
-        light: {
-          bg: '#ffffff',
-          surface: '#f8fafc',
-          card: '#ffffff',
-          border: '#e2e8f0',
-          text: {
-            primary: '#1e293b',
-            secondary: '#475569',
-            muted: '#64748b',
-          }
+        portfolio: {
+          bg: 'var(--color-bg)',
+          surface: 'var(--color-bg-surface)',
+          hover: 'var(--color-bg-hover)',
+          accent: 'var(--color-accent)',
+          'text-primary': 'var(--color-text-primary)',
+          'text-muted': 'var(--color-text-muted)',
+          border: 'var(--color-border)',
+          heading: '#e6f1ff',
         },
         dark: {
-          bg: '#0a0a0f',
-          surface: '#111118',
-          card: '#1a1a24',
-          border: '#2a2a3a',
+          bg: 'var(--color-bg)',
+          surface: 'var(--color-bg-surface)',
+          hover: 'var(--color-bg-hover)',
+          accent: 'var(--color-accent)',
+          accentSecondary: 'var(--color-accent)',
           text: {
-            primary: '#f8f9fa',
-            secondary: '#cbd5e1',
-            muted: '#94a3b8',
+            primary: 'var(--color-text-primary)',
+            secondary: 'var(--color-text-muted)',
           }
         }
       },
+      fontFamily: {
+        heading: ['Inter', 'system-ui', 'sans-serif'],
+        body: ['Inter', 'system-ui', 'sans-serif'],
+        mono: ['"Fira Code"', '"JetBrains Mono"', '"Courier New"', 'monospace'],
+      },
       boxShadow: {
-        'light': '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
-        'light-md': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
-        'light-lg': '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
-        'light-xl': '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
-      }
+        'card-hover': '0 4px 24px rgba(2, 12, 27, 0.7)',
+      },
     },
   },
   plugins: [],
 }
-

@@ -3,25 +3,26 @@ import { BASE_URL } from '../config/baseUrl';
 
 // EDIT THESE VARIABLES
 const meta = {
-  title: "Mohammed Ez-Zouak | Full Stack & Data Engineer",
+  title: "Mohammed Ez-Zouak | Backend Developer (Python/Django)",
   description:
-    "Portfolio of Mohammed Ez-Zouak, State Engineer in Computer Science and Full Stack & Data Developer based in Casablanca.",
+    "Portfolio of Mohammed Ez-Zouak, Backend Developer specializing in Python/Django. Currently Software Engineer at ITSS Paris.",
+  keywords: "Django, WebSockets, PostgreSQL, multi-tenant SaaS, real-time, Python backend, pytest, CI/CD",
   url: BASE_URL,
   image: `${BASE_URL}og-image.jpg`,
-  twitterUsername: "@MedEZZOUAK",
+  twitterUsername: "@mezzouak",
 };
 
 const personStructuredData = {
   "@type": "Person",
   "name": "Mohammed Ez-Zouak",
   "url": meta.url,
-  "jobTitle": "Full Stack & Data Engineer",
+  "jobTitle": "Software Engineer",
   "description": meta.description,
   "image": meta.image,
   "sameAs": [
     "https://www.linkedin.com/in/mohammed-ez-zouak",
     "https://github.com/MedEZZOUAK",
-    "https://twitter.com/MedEZZOUAK"
+    "https://twitter.com/mezzouak"
   ]
 };
 
@@ -48,6 +49,7 @@ export default function SEO() {
       {/* Standard Metadata */}
       <title>{meta.title}</title>
       <meta name="description" content={meta.description} />
+      <meta name="keywords" content={meta.keywords} />
       <link rel="canonical" href={meta.url} />
       <link rel="alternate" hrefLang="en" href={meta.url} />
       <link rel="alternate" hrefLang="fr" href={meta.url} />

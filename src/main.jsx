@@ -4,14 +4,12 @@ import { HelmetProvider } from 'react-helmet-async'
 import { ErrorBoundary } from 'react-error-boundary'
 import App from './App.jsx'
 import './index.css'
-import { ThemeProvider } from './contexts/ThemeContext'
 import { LanguageProvider } from './contexts/LanguageContext'
 
 const Root = () => (
   <React.StrictMode>
     <HelmetProvider>
-      <ThemeProvider>
-        <LanguageProvider>
+      <LanguageProvider>
           <ErrorBoundary
             fallbackRender={({ error, resetErrorBoundary }) => (
               <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-red-50 via-white to-red-100 text-center px-4">
@@ -46,7 +44,6 @@ const Root = () => (
             <App />
           </ErrorBoundary>
         </LanguageProvider>
-      </ThemeProvider>
     </HelmetProvider>
   </React.StrictMode>
 )

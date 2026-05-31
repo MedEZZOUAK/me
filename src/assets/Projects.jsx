@@ -1,735 +1,179 @@
-import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import {
-  FaGithub,
-  FaImages,
-  FaFileDownload,
-  FaIndustry,
-  FaBrain,
-  FaDatabase,
-  FaCode,
-} from "react-icons/fa";
-import ImageGallery from "react-image-gallery";
-import "react-image-gallery/styles/css/image-gallery.css";
-import PropTypes from "prop-types";
+import { FaGithub, FaExternalLinkAlt, FaLock } from "react-icons/fa";
 import { useLanguage } from "../contexts/LanguageContext";
+import { BASE_URL } from "../config/baseUrl";
 
 function Projects() {
-  const [selectedProject, setSelectedProject] = useState(null);
-  const [showGallery, setShowGallery] = useState(false);
   const { language } = useLanguage();
 
   const content = {
     en: {
-      title: "Featured Projects",
-      tabs: {
-        all: "All Projects",
-        ai: "AI & Computer Vision",
-        data: "Data Engineering",
-        fullstack: "Full Stack"
-      },
-      labels: {
-        technologies: "Technologies:",
-        features: "Key Features:",
-        impact: "Impact:"
-      },
-      actions: {
-        viewCode: "View Code",
-        viewImages: "View Images",
-        viewReport: "View Report"
-      }
+      title: "Projects",
+      projects: [
+        {
+          title: "IJConnect — Production Platform",
+          description: "Contributed to a Django-based professional networking platform serving ~5,000 daily users. Key work: database query optimization reducing load times from minutes to ~30s, WebSocket-based real-time notifications, and Matrix chat integration.",
+          tags: ["Django", "PostgreSQL", "WebSockets", "AWS RDS", "Python"],
+          proprietary: true,
+          link: "https://infojeunesfrance.org/actu_ijf/lancement-dij-connect/",
+          linkLabel: "Read about IJ Connect"
+        },
+        {
+          title: "Visual Defect Detection System",
+          description: "Built a proof-of-concept computer vision pipeline for automated defect detection on a manufacturing line. Achieved ~77% precision and 75% recall using YOLO and OpenCV. Integrated with a KPI dashboard for production monitoring.",
+          tags: ["Python", "YOLO", "OpenCV", "Computer Vision", "Dashboarding"],
+          proprietary: true,
+          video: "lear-demo.mp4",
+          videoLabel: "Demo in action"
+        },
+        {
+          title: "Full-Text Search Integration",
+          description: "Implemented Apache Solr-based full-text search in a Drupal CMS platform, enabling fast and relevant content discovery across a large dataset.",
+          tags: ["Apache Solr", "Drupal", "PHP", "Backend"],
+          proprietary: true
+        },
+        {
+          title: "SplitPal — Expense Splitting App",
+          description: "A full-stack expense splitting app inspired by Splitwise — create a group, share a link, and track who paid what. Features live balance tracking, debt simplification, trip archiving, CSV export, and local trip history. No sign-up required.",
+          tags: ["Next.js 15", "TypeScript", "Tailwind CSS", "Turso", "Drizzle ORM", "Vercel"],
+          proprietary: false,
+          demo: "https://splitpal.mezzouak.tech/",
+          demoLabel: "Live Demo",
+          recent: true
+        }
+      ]
     },
     fr: {
-      title: "Projets Réalisés",
-      tabs: {
-        all: "Tous les Projets",
-        ai: "IA & Vision par Ordinateur",
-        data: "Ingénierie des Données",
-        fullstack: "Full Stack"
-      },
-      labels: {
-        technologies: "Technologies :",
-        features: "Fonctionnalités Clés :",
-        impact: "Impact :"
-      },
-      actions: {
-        viewCode: "Voir le Code",
-        viewImages: "Voir les Images",
-        viewReport: "Voir le Rapport"
-      }
+      title: "Projets",
+      projects: [
+        {
+          title: "IJConnect — Plateforme en Production",
+          description: "Contribution à une plateforme de réseau professionnel sous Django servant ~5 000 utilisateurs quotidiens. Travail clé : optimisation des requêtes réduisant le temps de chargement de plusieurs minutes à ~30s, notifications en temps réel (WebSockets) et intégration de chat Matrix.",
+          tags: ["Django", "PostgreSQL", "WebSockets", "AWS RDS", "Python"],
+          proprietary: true,
+          link: "https://infojeunesfrance.org/actu_ijf/lancement-dij-connect/",
+          linkLabel: "Lire l'annonce de lancement"
+        },
+        {
+          title: "Système de Détection de Défauts Visuels",
+          description: "Création d'un PoC de vision par ordinateur pour la détection automatisée de défauts sur une ligne de production. Atteinte d'une précision de ~77% et d'un rappel de 75% via YOLO et OpenCV. Intégration à un tableau de bord KPI.",
+          tags: ["Python", "YOLO", "OpenCV", "Computer Vision", "Dashboarding"],
+          proprietary: true,
+          video: "lear-demo.mp4",
+          videoLabel: "Démo en action"
+        },
+        {
+          title: "Intégration de Recherche Plein Texte",
+          description: "Implémentation d'une recherche plein texte avec Apache Solr sur un CMS Drupal, permettant une découverte rapide et pertinente du contenu sur un large volume de données.",
+          tags: ["Apache Solr", "Drupal", "PHP", "Backend"],
+          proprietary: true
+        },
+        {
+          title: "SplitPal — Application de Partage de Dépenses",
+          description: "Application full-stack de partage de dépenses inspirée de Splitwise — créez un groupe, partagez un lien et suivez qui a payé quoi. Soldes en direct, simplification des dettes, archivage de voyages, export CSV et historique local. Aucune inscription requise.",
+          tags: ["Next.js 15", "TypeScript", "Tailwind CSS", "Turso", "Drizzle ORM", "Vercel"],
+          proprietary: false,
+          demo: "https://splitpal.mezzouak.tech/",
+          demoLabel: "Voir le site",
+          recent: true
+        }
+      ]
     }
   };
 
-  const baseProjects = useMemo(() => ([
-    {
-      id: "admin-digitalization",
-      title: "Administrative Process Digitalization",
-      category: "fullstack",
-      year: "2024",
-      technologies: ["React", "Spring Boot", "Docker", "Microservices"],
-      github: "https://github.com/Ayuubakb/Urbanisme",
-      images: [
-        {
-          original: "https://i.ibb.co/F5pBKXJ/arch.png",
-          thumbnail: "https://i.ibb.co/F5pBKXJ/arch.png",
-        },
-        {
-          original: "https://i.ibb.co/9v72z2k/pic2.jpg",
-          thumbnail: "https://i.ibb.co/9v72z2k/pic2.jpg",
-        },
-        {
-          original: "https://i.ibb.co/Tk1fdmR/pic1.jpg",
-          thumbnail: "https://i.ibb.co/Tk1fdmR/pic1.jpg",
-        },
-      ],
-      report: import.meta.env.BASE_URL + "report.pdf",
-      content: {
-        en: {
-          categoryLabel: "Fullstack Web Application",
-          description:
-            "Created two web platforms using React and Spring Boot to automate the issuance of residence certificates and trade registers, modernizing administrative processes as part of Digital Morocco 2030.",
-          features: [
-            "Online Application Submission & Tracking",
-            "Digital Document Generation",
-            "User Authentication & Role-Based Access Control",
-            "Integrated Notification System",
-            "Rendezvous Scheduling & Management",
-          ],
-          impact: [
-            "Significant reduction in administrative processing time",
-            "Increased operational efficiency and resource utilization",
-            "Enhanced user satisfaction through streamlined online services",
-            "Achieved notable cost savings by minimizing manual processes",
-            "Improved transparency and reduced bureaucracy in administrative procedures",
-            "Directly contributes to the Digital Morocco 2030 initiative's digitalization goals",
-          ]
-        },
-        fr: {
-          categoryLabel: "Application Web Fullstack",
-          description:
-            "Création de deux plateformes web avec React et Spring Boot pour automatiser la délivrance des certificats de résidence et des registres de commerce, modernisant les processus administratifs dans le cadre de Digital Morocco 2030.",
-          features: [
-            "Dépôt et suivi des demandes en ligne",
-            "Génération numérique des documents",
-            "Authentification des utilisateurs et contrôle d'accès par rôles",
-            "Système de notifications intégré",
-            "Planification et gestion des rendez-vous",
-          ],
-          impact: [
-            "Réduction significative du temps de traitement administratif",
-            "Amélioration de l'efficacité opérationnelle et de l'utilisation des ressources",
-            "Meilleure satisfaction des usagers via des services en ligne fluides",
-            "Réduction des coûts grâce à la diminution des processus manuels",
-            "Transparence renforcée et réduction de la bureaucratie",
-            "Contribution directe aux objectifs de digitalisation de Digital Morocco 2030",
-          ]
-        }
-      }
-    },
-    {
-      id: "phd-enrollment",
-      title: "PhD Enrollment System",
-      category: "fullstack",
-      year: "2024",
-      technologies: ["Angular", "Spring Boot", "Docker"],
-      github: "https://github.com/MedEZZOUAK/Full-project.git",
-      images: [
-        {
-          original: "https://i.ibb.co/RhxjNzC/Register.jpg",
-          thumbnail: "https://i.ibb.co/RhxjNzC/Register.jpg",
-        },
-        {
-          original:
-            "https://i.ibb.co/qncJK0d/Screenshot-2025-01-15-195844.jpg",
-          thumbnail:
-            "https://i.ibb.co/qncJK0d/Screenshot-2025-01-15-195844.jpg",
-        },
-        {
-          original:
-            "https://i.ibb.co/W5jMyyv/Screenshot-2025-01-15-195916.jpg",
-          thumbnail:
-            "https://i.ibb.co/W5jMyyv/Screenshot-2025-01-15-195916.jpg",
-        },
-      ],
-      report: import.meta.env.BASE_URL + "PhD/GestionDoctorat.pdf",
-      content: {
-        en: {
-          categoryLabel: "Fullstack Web Application",
-          description:
-            "Designed and developed a complete web application for managing PhD enrollments using Angular (frontend) and Spring Boot (backend), ensuring a scalable and efficient infrastructure.",
-          features: [
-            "Online Application Submission & Document Upload",
-            "Real-time Application Status Tracking",
-            "Personalized Student Profile Management",
-            "Comprehensive Application Review & Approval Workflow",
-            "Robust Student Management & Reporting Tools",
-            "Integrated Notification System for Key Updates",
-          ],
-          impact: [
-            "Eliminated paper-based processes, achieving full digitalization of PhD enrollments",
-            "Significantly reduced administrative burden for faculty and staff",
-            "Enabled faster processing and decision-making for applications",
-            "Ensured better data management and integrity for enrollment records",
-            "Improved communication between applicants and administrators",
-            "Increased overall enrollment efficiency and operational transparency",
-          ]
-        },
-        fr: {
-          categoryLabel: "Application Web Fullstack",
-          description:
-            "Conception et développement d'une application web complète pour gérer les inscriptions en doctorat avec Angular (frontend) et Spring Boot (backend), garantissant une infrastructure évolutive et efficace.",
-          features: [
-            "Dépôt de candidature et téléchargement de documents en ligne",
-            "Suivi en temps réel de l'état des candidatures",
-            "Gestion personnalisée des profils étudiants",
-            "Workflow complet de revue et validation des dossiers",
-            "Outils robustes de gestion des étudiants et de reporting",
-            "Système de notifications intégré pour les étapes clés",
-          ],
-          impact: [
-            "Suppression des processus papier grâce à une digitalisation complète",
-            "Réduction significative de la charge administrative pour les équipes pédagogiques",
-            "Accélération du traitement et de la prise de décision",
-            "Meilleure gestion et intégrité des données d'inscription",
-            "Communication améliorée entre candidats et administrateurs",
-            "Efficacité globale accrue et transparence opérationnelle",
-          ]
-        }
-      }
-    },
-    {
-      id: "cardio-prediction",
-      title: "AI Cardiovascular Disease Prediction Model",
-      category: "data",
-      year: "2024",
-      technologies: [
-        "Python",
-        "Jupyter Notebooks",
-        "Machine Learning",
-        "Scikit-learn",
-        "Pandas",
-        "Matplotlib/Seaborn",
-      ],
-      github: "https://github.com/MedEZZOUAK/ia_cardio.git",
-      images: [
-        {
-          original: "https://i.ibb.co/5sD0bYc/output.png",
-          thumbnail: "https://i.ibb.co/5sD0bYc/output.png",
-        },
-        {
-          original:
-            "https://i.ibb.co/4SD6b90/Screenshot-2025-01-16-135523.jpg",
-          thumbnail:
-            "https://i.ibb.co/4SD6b90/Screenshot-2025-01-16-135523.jpg",
-        },
-        {
-          original:
-            "https://i.ibb.co/YcW03Mx/Screenshot-2025-01-16-135559.jpg",
-          thumbnail:
-            "https://i.ibb.co/YcW03Mx/Screenshot-2025-01-16-135559.jpg",
-        },
-        {
-          original:
-            "https://i.ibb.co/m58jRTZ/Screenshot-2025-01-16-135621.jpg",
-          thumbnail:
-            "https://i.ibb.co/m58jRTZ/Screenshot-2025-01-16-135621.jpg",
-        },
-        {
-          original:
-            "https://i.ibb.co/Vpctccq/Screenshot-2025-01-16-135646.jpg",
-          thumbnail:
-            "https://i.ibb.co/Vpctccq/Screenshot-2025-01-16-135646.jpg",
-        },
-      ],
-      report: "",
-      content: {
-        en: {
-          categoryLabel: "Data Science & AI",
-          description:
-            "Developed a predictive model for cardiovascular diseases using Python and Jupyter Notebooks. The project involved extensive data preprocessing, feature engineering, and evaluation of various machine learning algorithms to identify optimal predictive performance.",
-          features: [
-            "Comprehensive Data Preprocessing & Cleaning",
-            "Advanced Feature Engineering for Medical Data",
-            "Application of Multiple Classification Algorithms (e.g., Logistic Regression, SVM, Random Forest)",
-            "Model Training, Validation, and Hyperparameter Tuning",
-            "Performance Evaluation using Metrics like Accuracy, Precision, Recall, and F1-Score",
-            "Data Visualization for Exploratory Data Analysis and Model Insights",
-          ],
-          impact: [
-            "Provided a foundational AI model for early risk assessment of cardiovascular diseases",
-            "Demonstrated potential to assist healthcare professionals in proactive patient care",
-            "Contributed to data-driven decision-making in medical diagnostics",
-            "Showcased proficiency in handling and analyzing complex health datasets",
-            "Offered insights into key risk factors for cardiovascular conditions through feature importance analysis",
-          ]
-        },
-        fr: {
-          categoryLabel: "Data Science & IA",
-          description:
-            "Développement d'un modèle prédictif des maladies cardiovasculaires avec Python et Jupyter Notebooks. Le projet a inclus un prétraitement avancé des données, l'ingénierie des features et l'évaluation de plusieurs algorithmes de machine learning pour identifier les meilleures performances.",
-          features: [
-            "Prétraitement et nettoyage complets des données",
-            "Ingénierie avancée des features pour données médicales",
-            "Application de plusieurs algorithmes de classification (ex. Régression Logistique, SVM, Random Forest)",
-            "Entraînement, validation et tuning des hyperparamètres",
-            "Évaluation des performances via Accuracy, Precision, Recall et F1-Score",
-            "Visualisation des données pour l'analyse exploratoire et l'interprétation des modèles",
-          ],
-          impact: [
-            "Fourniture d'un modèle IA de base pour l'évaluation précoce des risques cardiovasculaires",
-            "Potentiel d'assistance aux professionnels de santé pour une prise en charge proactive",
-            "Contribution à une prise de décision médicale pilotée par les données",
-            "Démonstration de compétences dans l'analyse de datasets santé complexes",
-            "Mise en évidence des facteurs de risque clés via l'analyse d'importance des variables",
-          ]
-        }
-      }
-    },
-    {
-      id: "academic-bi",
-      title: "Academic Performance Analysis System",
-      category: "data",
-      year: "2024",
-      technologies: [
-        "Business Intelligence",
-        "Data Warehouse",
-        "ETL",
-        "Python",
-        "Apache Airflow",
-        "Power BI",
-        "OLAP",
-        "SQL (for DWH)",
-        "DAX",
-        "OLAP CUB "
-      ],
-      github: "https://github.com/MedEZZOUAK/BI_PROJECT_ETL.git",
-      images: [
-        {
-          original: "https://i.ibb.co/yFTtcXG/page1.jpg",
-          thumbnail: "https://i.ibb.co/yFTtcXG/page1.jpg",
-        },
-        {
-          original: "https://i.ibb.co/jMvDjGt/page2.jpg",
-          thumbnail: "https://i.ibb.co/jMvDjGt/page2.jpg",
-        },
-        {
-          original: "https://i.ibb.co/KXcSZ4m/page3.jpg",
-          thumbnail: "https://i.ibb.co/KXcSZ4m/page3.jpg",
-        },
-        {
-          original: "https://i.ibb.co/kycRb9m/page4.jpg",
-          thumbnail: "https://i.ibb.co/kycRb9m/page4.jpg",
-        },
-        {
-          original: "https://i.ibb.co/py4BG9g/page5.jpg",
-          thumbnail: "https://i.ibb.co/py4BG9g/page5.jpg",
-        },
-        {
-          original:
-            "https://i.ibb.co/KbBqkZM/Screenshot-2025-01-16-145535.jpg",
-          thumbnail:
-            "https://i.ibb.co/KbBqkZM/Screenshot-2025-01-16-145535.jpg",
-        },
-      ],
-      report: import.meta.env.BASE_URL + "Bi/Rapport-MiniProjetBI_GRP8.pdf",
-      content: {
-        en: {
-          categoryLabel: "Business Intelligence",
-          description:
-            "Designed and implemented a Business Intelligence system for analyzing academic performance, including student attendance and grades. The project involved creating a robust Data Warehouse, developing an automated ETL pipeline using Python and Apache Airflow, and building an interactive dashboard with Power BI to provide insightful analytics.",
-          features: [
-            "Centralized Data Warehouse for Integrated Academic Data",
-            "Automated ETL Pipeline for Data Extraction, Transformation, and Loading (Python, Apache Airflow)",
-            "Interactive Dashboards for Visualizing Student Grades and Attendance (Power BI)",
-            "Multi-dimensional Analysis Capabilities (OLAP)",
-            "Trend Analysis and Performance Tracking over Time",
-            "Drill-down Capabilities for Granular Academic Insights",
-            "Customizable Reporting for Academic Stakeholders",
-          ],
-          impact: [
-            "Provided academic institutions with data-driven insights into student performance trends",
-            "Enabled proactive identification of at-risk students through real-time attendance and grade monitoring",
-            "Improved decision-making for curriculum development and resource allocation",
-            "Streamlined data processing and reporting, reducing manual effort and errors",
-            "Enhanced transparency and accessibility of academic performance data for educators and administrators",
-            "Laid the groundwork for predictive analytics in academic success and retention",
-          ]
-        },
-        fr: {
-          categoryLabel: "Business Intelligence",
-          description:
-            "Conception et implémentation d'un système de Business Intelligence pour analyser la performance académique (assiduité et notes). Le projet a inclus la création d'un Data Warehouse robuste, le développement d'un pipeline ETL automatisé avec Python et Apache Airflow, et un tableau de bord interactif Power BI pour des analyses pertinentes.",
-          features: [
-            "Data Warehouse centralisé pour intégrer les données académiques",
-            "Pipeline ETL automatisé pour l'extraction, la transformation et le chargement (Python, Apache Airflow)",
-            "Dashboards interactifs pour visualiser notes et présence (Power BI)",
-            "Capacités d'analyse multidimensionnelle (OLAP)",
-            "Analyse des tendances et suivi des performances dans le temps",
-            "Fonctionnalités de drill-down pour des insights granulaires",
-            "Reporting personnalisable pour les parties prenantes académiques",
-          ],
-          impact: [
-            "Apport d'insights data-driven sur les tendances de performance des étudiants",
-            "Identification proactive des étudiants à risque via le suivi temps réel",
-            "Amélioration de la prise de décision pour le développement des curricula",
-            "Rationalisation du traitement des données et réduction des erreurs",
-            "Transparence et accessibilité accrues des données de performance",
-            "Base pour des analyses prédictives de réussite et rétention",
-          ]
-        }
-      }
-    },
-    {
-      id: "home-services",
-      title: "Home Services Web Application",
-      category: "fullstack",
-      year: "Not Specified",
-      technologies: [
-        "PHP",
-        "MySQL",
-        "Bootstrap",
-        "MVC Architecture",
-        "Web Development",
-        "Service Booking",
-        "Email Integration",
-      ],
-      github: "https://github.com/Ayuubakb/PHP_MVC_ServicesWebSite.git",
-      images: [
-        {
-          original: "https://i.ibb.co/0G4ZXK3/brico-Email.png",
-          thumbnail: "https://i.ibb.co/0G4ZXK3/brico-Email.png",
-        },
-        {
-          original: "https://i.ibb.co/mDd57X3/ClassD.png",
-          thumbnail: "https://i.ibb.co/mDd57X3/ClassD.png",
-        },
-        {
-          original: "https://i.ibb.co/g4yfnfk/client-Profile.png",
-          thumbnail: "https://i.ibb.co/g4yfnfk/client-Profile.png",
-        },
-        {
-          original: "https://i.ibb.co/dpMXXRT/clSignup.png",
-          thumbnail: "https://i.ibb.co/dpMXXRT/clSignup.png",
-        },
-        {
-          original: "https://i.ibb.co/vJLKspz/commandes.png",
-          thumbnail: "https://i.ibb.co/vJLKspz/commandes.png",
-        },
-        {
-          original: "https://i.ibb.co/1vsJDd0/commentaires.png",
-          thumbnail: "https://i.ibb.co/1vsJDd0/commentaires.png",
-        },
-        {
-          original: "https://i.ibb.co/vL4MVnK/condition.png",
-          thumbnail: "https://i.ibb.co/vL4MVnK/condition.png",
-        },
-        {
-          original: "https://i.ibb.co/Wfy2ZyL/home.png",
-          thumbnail: "https://i.ibb.co/Wfy2ZyL/home.png",
-        },
-        {
-          original: "https://i.ibb.co/d6hx7Tv/interventions.png",
-          thumbnail: "https://i.ibb.co/d6hx7Tv/interventions.png",
-        },
-        {
-          original: "https://i.ibb.co/8d9YQVR/log.png",
-          thumbnail: "https://i.ibb.co/8d9YQVR/log.png",
-        },
-        {
-          original: "https://i.ibb.co/Rp2F61f/modify-Client.png",
-          thumbnail: "https://i.ibb.co/Rp2F61f/modify-Client.png",
-        },
-        {
-          original: "https://i.ibb.co/PFdFpVk/modify-Partenaire.png",
-          thumbnail: "https://i.ibb.co/PFdFpVk/modify-Partenaire.png",
-        },
-        {
-          original: "https://i.ibb.co/c8VBTh2/par-Signup.png",
-          thumbnail: "https://i.ibb.co/c8VBTh2/par-Signup.png",
-        },
-        {
-          original: "https://i.ibb.co/n1y3Tm7/partenaire-Profile.png",
-          thumbnail: "https://i.ibb.co/n1y3Tm7/partenaire-Profile.png",
-        },
-        {
-          original: "https://i.ibb.co/KbkMFBD/sercices.png",
-          thumbnail: "https://i.ibb.co/KbkMFBD/sercices.png",
-        },
-        {
-          original: "https://i.ibb.co/hWf8BgF/service.png",
-          thumbnail: "https://i.ibb.co/hWf8BgF/service.png",
-        },
-        {
-          original: "https://i.ibb.co/HTQm4L6/Tech.png",
-          thumbnail: "https://i.ibb.co/HTQm4L6/Tech.png",
-        },
-        {
-          original: "https://i.ibb.co/pjxZBqY/view-Partenaire.png",
-          thumbnail: "https://i.ibb.co/pjxZBqY/view-Partenaire.png",
-        },
-      ],
-      report: "",
-      content: {
-        en: {
-          categoryLabel: "Fullstack Web Application",
-          description:
-            "Developed a comprehensive web platform using PHP, MySQL, and Bootstrap, built on an MVC architecture. This application efficiently connects clients with a diverse range of home service providers (partners) for services like cleaning and gardening. It offers robust functionalities for both user types, including authentication, service browsing, reservation management, and unique feedback mechanisms to foster trust and accountability.",
-          features: [
-            "Dual User Portals (Client & Service Provider)",
-            "Secure User Authentication & Profile Management for both Clients and Partners",
-            "Service Browsing & Partner Profile Viewing",
-            "Intuitive Reservation & Booking System with Partner Acceptance/Rejection",
-            "Dynamic Rating System for Services, Clients, and Partners",
-            "Advanced Comment System with Conditional Display Logic (mutual comments & waiting period)",
-            "Automated Partner Availability Checks Based on Schedules",
-            "Real-time Email Notifications for Reservation Confirmations (including client details to partners)",
-            "Dashboard for Partners to Manage Services and View Feedback",
-          ],
-          impact: [
-            "Streamlined the process of connecting clients with home service providers",
-            "Enhanced user trust and reliability through a sophisticated rating and comment system",
-            "Improved efficiency in service booking and management for both parties",
-            "Provided a centralized platform for managing home service needs, eliminating manual coordination",
-            "Fostered a transparent and accountable service marketplace",
-            "Demonstrated strong fullstack development skills, complex logic implementation, and database design",
-          ]
-        },
-        fr: {
-          categoryLabel: "Application Web Fullstack",
-          description:
-            "Développement d'une plateforme web complète en PHP, MySQL et Bootstrap, construite sur une architecture MVC. L'application met en relation des clients avec des prestataires de services à domicile (partenaires) pour des services comme le ménage ou le jardinage. Elle propose des fonctionnalités robustes pour les deux types d'utilisateurs : authentification, navigation des services, gestion des réservations et mécanismes de feedback favorisant la confiance et la responsabilité.",
-          features: [
-            "Portails distincts pour Clients et Prestataires",
-            "Authentification sécurisée et gestion des profils pour clients et partenaires",
-            "Navigation des services et consultation des profils des partenaires",
-            "Système de réservation intuitif avec acceptation/refus par le partenaire",
-            "Système de notation dynamique pour services, clients et partenaires",
-            "Système avancé de commentaires avec logique conditionnelle (commentaires mutuels et délai d'attente)",
-            "Vérification automatisée de la disponibilité des partenaires selon les plannings",
-            "Notifications email en temps réel pour les confirmations de réservation (incluant les détails client)",
-            "Tableau de bord partenaires pour gérer les services et consulter les avis",
-          ],
-          impact: [
-            "Simplification de la mise en relation clients-prestataires",
-            "Renforcement de la confiance grâce au système de notation et commentaires",
-            "Amélioration de l'efficacité des réservations et de la gestion côté utilisateurs",
-            "Plateforme centralisée pour les besoins de services à domicile, réduisant la coordination manuelle",
-            "Marché de services plus transparent et responsable",
-            "Démonstration de solides compétences fullstack, logique métier complexe et design de base de données",
-          ]
-        }
-      }
-    },
-  ]), []);
-
   const t = content[language];
-  const projects = useMemo(
-    () => baseProjects.map((project) => ({ ...project, ...project.content[language] })),
-    [baseProjects, language]
-  );
-
-  const featuredProjects = projects.slice(0, 3);
 
   return (
-    <section
-      id="projects"
-      className="relative min-h-screen bg-gradient-to-br from-white via-blue-50 to-indigo-50 dark:from-dark-bg dark:via-dark-surface dark:to-dark-bg transition-colors duration-300 py-20"
-    >
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#3b82f610_1px,transparent_1px),linear-gradient(to_bottom,#3b82f610_1px,transparent_1px)] bg-[size:24px_24px] dark:bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] opacity-60" aria-hidden="true"></div>
-      <div className="relative z-10 container mx-auto px-6 py-20">
-        <motion.h2
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 dark:from-blue-400 dark:via-purple-400 dark:to-blue-400 bg-clip-text text-transparent"
-        >
-          {t.title}
-        </motion.h2>
+    <section id="projects" className="section-padding">
+      <h2 className="section-heading">
+        <span className="section-number">03.</span>
+        {t.title}
+      </h2>
 
-        {/* Projects Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <AnimatePresence mode="wait">
-            {featuredProjects.map((project, index) => (
-              <motion.div
-                key={project.title}
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -50 }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
-                className="bg-white dark:bg-dark-card backdrop-blur-sm rounded-2xl overflow-hidden shadow-light-xl dark:shadow-xl border-2 border-gray-300 dark:border-dark-border hover:shadow-2xl dark:hover:shadow-2xl transition-all duration-300"
-              >
-                <div className="p-8">
-                  <div className="flex items-start justify-between mb-4">
-                    <div>
-                      <h3 className="text-2xl font-bold text-slate-800 dark:text-gray-200 mb-2">
-                        {project.title}
-                      </h3>
-                      <div className="flex items-center space-x-4 text-sm text-slate-600 dark:text-gray-400 mb-3">
-                        <span className="flex items-center space-x-1">
-                          <FaIndustry className="text-blue-600 dark:text-blue-400" />
-                          <span>{project.year}</span>
-                        </span>
-                      </div>
-                    </div>
-                    <span
-                      className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                        project.category === "ai"
-                          ? "bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-300"
-                          : project.category === "data"
-                          ? "bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300"
-                          : "bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300"
-                      }`}
-                    >
-                      {project.categoryLabel}
-                    </span>
-                  </div>
+      <div className="flex flex-col gap-4">
+        {t.projects.map((project, index) => (
+          <div key={index} className="hover-card group relative">
+            {index === 0 && (
+              <span className="absolute top-6 right-6 font-mono text-xs text-portfolio-accent uppercase tracking-wider">
+                Featured
+              </span>
+            )}
+            {project.recent && (
+              <span className="absolute top-6 right-6 font-mono text-xs text-portfolio-accent uppercase tracking-wider">
+                {language === 'en' ? 'Recent' : 'Récent'}
+              </span>
+            )}
 
-                  <p className="text-slate-700 dark:text-gray-300 mb-6 leading-relaxed font-medium">
-                    {project.description}
-                  </p>
+            <h3 className={`text-base font-semibold text-portfolio-text-primary group-hover:text-portfolio-accent transition-colors duration-200 mb-3 ${index === 0 || project.recent ? 'pr-20' : ''}`}>
+              {project.title}
+            </h3>
 
-                  <div className="mb-6">
-                    <h4 className="text-lg font-semibold text-slate-800 dark:text-gray-200 mb-3">
-                      {t.labels.technologies}
-                    </h4>
-                    <div className="flex flex-wrap gap-2">
-                      {project.technologies.map((tech, idx) => (
-                        <span
-                          key={idx}
-                          className="px-3 py-1 bg-slate-100 dark:bg-dark-surface text-slate-700 dark:text-gray-300 rounded-full text-sm font-medium border-2 border-slate-200 dark:border-dark-border shadow-light dark:shadow-sm"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
+            <p className="text-sm text-portfolio-text-muted leading-relaxed mb-4">
+              {project.description}
+            </p>
 
-                  {project.features && (
-                    <div className="mb-6">
-                      <h4 className="text-lg font-semibold text-slate-800 dark:text-gray-200 mb-3">
-                        {t.labels.features}
-                      </h4>
-                      <ul className="space-y-2">
-                        {project.features.slice(0, 3).map((feature, idx) => (
-                          <li key={idx} className="flex items-start space-x-2">
-                            <div className="w-2 h-2 bg-blue-600 dark:bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
-                            <span className="text-slate-700 dark:text-gray-300 text-sm">
-                              {feature}
-                            </span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-
-                  {project.impact && (
-                    <div className="mb-6">
-                      <h4 className="text-lg font-semibold text-slate-800 dark:text-gray-200 mb-3">
-                        {t.labels.impact}
-                      </h4>
-                      <ul className="space-y-2">
-                        {project.impact.slice(0, 2).map((impact, idx) => (
-                          <li key={idx} className="flex items-start space-x-2">
-                            <div className="w-2 h-2 bg-green-500 dark:bg-green-400 rounded-full mt-2 flex-shrink-0"></div>
-                            <span className="text-slate-700 dark:text-gray-300 text-sm">
-                              {impact}
-                            </span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-
-                  <div className="flex flex-wrap gap-3">
-                    {project.github && (
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center space-x-2 px-4 py-2 bg-gray-800 dark:bg-gray-700 text-white rounded-lg hover:bg-gray-700 dark:hover:bg-gray-600 transition-all duration-300"
-                      >
-                        <FaGithub />
-                        <span>{t.actions.viewCode}</span>
-                      </a>
-                    )}
-                    {project.images && project.images.length > 0 && (
-                      <button
-                        onClick={() => {
-                          setSelectedProject(project);
-                          setShowGallery(true);
-                        }}
-                        className="flex items-center space-x-2 px-4 py-2 bg-blue-600 dark:bg-blue-500 text-white rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600 transition-all duration-300"
-                      >
-                        <FaImages />
-                        <span>{t.actions.viewImages}</span>
-                      </button>
-                    )}
-                    {project.report && (
-                      <a
-                        href={project.report}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center space-x-2 px-4 py-2 bg-green-600 dark:bg-green-500 text-white rounded-lg hover:bg-green-700 dark:hover:bg-green-600 transition-all duration-300"
-                      >
-                        <FaFileDownload />
-                        <span>{t.actions.viewReport}</span>
-                      </a>
-                    )}
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </div>
-      </div>
-
-      {/* Image Gallery Modal */}
-      {showGallery && selectedProject && (
-        <Modal isOpen={showGallery} onClose={() => setShowGallery(false)}>
-          <div className="bg-white dark:bg-dark-card rounded-2xl p-6 max-w-4xl mx-auto border-2 border-gray-300 dark:border-dark-border shadow-light-xl dark:shadow-xl">
-            <div className="flex justify-between items-center mb-4">
-              <h3 className="text-2xl font-bold text-gray-800 dark:text-gray-200">
-                {selectedProject.title}
-              </h3>
-              <button
-                onClick={() => setShowGallery(false)}
-                className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 text-2xl"
-              >
-                ×
-              </button>
+            <div className="flex flex-wrap gap-2 mb-4">
+              {project.tags.map((tag, tagIndex) => (
+                <span key={tagIndex} className="tag-pill">
+                  {tag}
+                </span>
+              ))}
             </div>
-            <ImageGallery
-              items={selectedProject.images}
-              showPlayButton={false}
-              showFullscreenButton={true}
-              showNav={true}
-              showThumbnails={true}
-              slideInterval={3000}
-              slideOnThumbnailOver={true}
-            />
+
+            {project.video && (
+              <div className="mb-4">
+                <p className="font-mono text-xs text-portfolio-accent mb-2">{project.videoLabel}</p>
+                <div className="rounded overflow-hidden border border-portfolio-border bg-portfolio-bg">
+                  <video
+                    controls
+                    preload="metadata"
+                    playsInline
+                    className="w-full max-h-80 object-contain"
+                    aria-label={project.videoLabel}
+                  >
+                    <source src={`${BASE_URL}${project.video}`} type="video/mp4" />
+                  </video>
+                </div>
+              </div>
+            )}
+
+            <div className="flex items-center gap-4 flex-wrap">
+              {project.proprietary && (
+                <span className="flex items-center gap-2 text-portfolio-text-muted text-xs font-mono select-none">
+                  <FaLock className="text-[10px]" />
+                  {language === 'en' ? 'Proprietary — code confidential' : 'Propriétaire — code confidentiel'}
+                </span>
+              )}
+              {project.link && (
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-sm font-mono text-portfolio-text-muted hover:text-portfolio-accent transition-colors duration-200"
+                >
+                  <FaExternalLinkAlt /> {project.linkLabel}
+                </a>
+              )}
+              {!project.proprietary && (
+                <>
+                  {project.github && (
+                    <a href={project.github} className="flex items-center gap-2 text-sm font-mono text-portfolio-text-muted hover:text-portfolio-accent transition-colors duration-200">
+                      <FaGithub /> GitHub
+                    </a>
+                  )}
+                  {project.demo && (
+                    <a href={project.demo} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm font-mono text-portfolio-text-muted hover:text-portfolio-accent transition-colors duration-200">
+                      <FaExternalLinkAlt /> {project.demoLabel || (language === 'en' ? 'Live Demo' : 'Voir le site')}
+                    </a>
+                  )}
+                </>
+              )}
+            </div>
           </div>
-        </Modal>
-      )}
+        ))}
+
+      </div>
     </section>
   );
 }
-
-const Modal = ({ children, isOpen, onClose }) => (
-  <div
-    className={`fixed inset-0 z-50 flex items-center justify-center p-4 ${
-      isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
-    } transition-opacity duration-300`}
-  >
-    <div className="absolute inset-0 bg-black/70 dark:bg-black/80 backdrop-blur-sm" onClick={onClose}></div>
-    <div className="relative z-10 max-h-full overflow-auto">{children}</div>
-  </div>
-);
-
-Modal.propTypes = {
-  children: PropTypes.node.isRequired,
-  isOpen: PropTypes.bool.isRequired,
-  onClose: PropTypes.func.isRequired
-};
 
 export default Projects;
